@@ -1,0 +1,25 @@
+{
+  "name": "spotify",
+  "version": "1.0.0",
+  "description": "The goal of this assignment is to COMPLETELY rebuild spotifys desktop app over the summer of 2025",
+  "homepage": "https://github.com/Dylanlang04/Spotify#readme",
+  "bugs": {
+    "url": "https://github.com/Dylanlang04/Spotify/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dylanlang04/Spotify.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+	  "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "electron": "^36.1.0"
+  },
+  "devDependencies": {}
+}
