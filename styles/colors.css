@@ -1,0 +1,30 @@
+html {
+    background-color: #0E151D;
+}
+#topbar {
+    background-color: #0E151D;
+}
+#arrows button {
+    border-radius: 50%;
+    width:25px;
+    height:25px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #0E151D;
+    color: white;
+    border-color: transparent;
+}
+#search-cont button {
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #09111B;
+    color: white;
+    border-color: transparent;
+
+}
+#search {
+    background-color: #09111B;
+}
