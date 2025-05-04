@@ -3,6 +3,7 @@ The goal of this project is to COMPLETELY rebuild spotifys desktop app over the 
 
 
 CHANGE-LOG:
+
   May 1st, 2025
       - Initial project strcuture setup
 
