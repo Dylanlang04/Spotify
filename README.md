@@ -12,3 +12,5 @@ CHANGE-LOG:
 
   May 3rd, 2025
       - Started working on the UI, and styling for 1920x1080 display.
+  May 4th,  2025
+      - UI is cringe, and painful.

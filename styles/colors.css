@@ -8,11 +8,30 @@ html {
     border-radius: 50%;
     width:25px;
     height:25px;
-    font-size: 15px;
-    font-weight: bold;
-    background-color: #131c26;
-    color: white;
+    background-color: transparent;
     border-color: transparent;
+}
+#market_wrap button {
+    background-color: transparent;
+    border-color: transparent;
+}
+#market_wrap svg {
+    fill:white;
+    stroke: white;
+}
+#market_wrap svg:hover {
+    fill:#f88379 !important;
+    stroke: #f88379 !important;
+    cursor: pointer;
+}
+#arrows svg {
+    fill:white;
+    stroke: white;
+}
+#arrows svg:hover {
+    fill:#f88379 !important;
+    stroke: #f88379 !important;
+    cursor: pointer;
 }
 #search-cont button {
     border-radius: 50%;
@@ -34,6 +53,13 @@ html {
     border-color: transparent;
 
 }
+.song_name {
+    color: #f88379
+    
+} 
+.song_name:hover {
+    cursor: pointer;
+}
 .news img {
     width: 15px;
     height:15px;
@@ -45,5 +71,19 @@ html {
 .profile img {
     width: 25px;
     height:25px;
+}
+#test button {
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 50%;
+}
+#test svg {
+    fill: white;
+    stroke: white;
+}
+#test svg:hover {
+    fill: #f88379 !important;
+    stroke: #f88379 !important;
+    cursor: pointer;
 }
 
