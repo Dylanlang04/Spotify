@@ -1,8 +1,8 @@
 html {
-    background-color: #0E151D;
+    background-color: #131c26;
 }
 #topbar {
-    background-color: #0E151D;
+    background-color: #131c26;
 }
 #arrows button {
     border-radius: 50%;
@@ -10,7 +10,7 @@ html {
     height:25px;
     font-size: 15px;
     font-weight: bold;
-    background-color: #0E151D;
+    background-color: #131c26;
     color: white;
     border-color: transparent;
 }
@@ -20,11 +20,30 @@ html {
     width: 25px;
     font-size: 15px;
     font-weight: bold;
-    background-color: #09111B;
+    background-color: transparent;
     color: white;
     border-color: transparent;
 
 }
 #search {
     background-color: #09111B;
+    border-radius: 5%;
 }
+#user-cont button {
+    background-color: transparent;
+    border-color: transparent;
+
+}
+.news img {
+    width: 15px;
+    height:15px;
+}
+.friend_act img {
+    width: 15px;
+    height:15px;
+}
+.profile img {
+    width: 25px;
+    height:25px;
+}
+

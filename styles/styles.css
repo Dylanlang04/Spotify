@@ -1,7 +1,6 @@
 
 
 
-
 #topbar {
     position: absolute;
     top: 0px;
@@ -29,11 +28,41 @@
     margin-top: 20px;
 
 }
+.home {
+    margin-right: 15px;
+}
 .search_icon {
-    margin-right: 10px;
+    margin-right: 2px;
+    width:15px;
+
+}
+#search-cont img {
+    width: 15px;
+    height: auto;
+    margin-top: 5px;
+}
+.searchInput {
+    background-color: #09111B;
+    color: white;
+    border-color: transparent;
+    margin-top:2px;
+    width: 100%;
+    font-size: 10px;
+}
+#search {
+    margin-bottom: 5px;
+    display: flex;
+    height: 30px;
+    width:22%;
+    
+}
+.textfield {
+    position:inherit;
+    display: flex;
 }
 .browse_icon {
     margin-left: 10px;
+    margin-right:5px;
 }
 #user-cont {
     position: inherit;
@@ -116,3 +145,4 @@
 .playlists{
     margin-top: 3px;
 }
+
