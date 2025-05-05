@@ -1,0 +1,85 @@
+
+
+#arrows {
+    position: absolute;
+    top: 20px;
+    left: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    
+}
+.arrow1, .arrow2, .marketplace {
+    z-index: 1;
+}
+.arrow1 {
+    margin-left: 25px;
+
+}
+.marketplace {
+    margin-left: 10px;
+    margin-top: -2px
+}
+
+#search-cont {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    top:17px;
+    left:0px;
+
+}
+.home, #search_btn, #search_inp, .browse_icon {
+    z-index: 1;
+}
+.home {
+    margin-right: 15px;
+}
+
+#search_inp {
+    background-color: #09111B;
+    color: white;
+    border-color: transparent;
+    margin-top:2px;
+    width: 100%;
+    font-size: 10px;
+}
+#search {
+    display: flex;
+    justify-content: center;
+    height: 30px;
+    width:22%;
+    
+}
+.textfield {
+    position:inherit;
+    display: flex;
+}
+.browse_icon {
+    margin-left: 10px;
+    margin-right:5px;
+}
+
+#user-cont {
+    position: absolute;
+    display:flex;
+    justify-content: right;
+    top: 17px;
+    left:0px;
+    width:100%;    
+}
+.news, .friend_act, .profile {
+    z-index: 1;
+}
+.news {
+    margin-right: 5px;
+}
+
+.friend_act {
+    margin-right:5px;
+}
+.profile {
+    margin-right: 10px;
+}
+
