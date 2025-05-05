@@ -1,0 +1,112 @@
+#topbar {
+    background-color: #131c26;
+}
+#arrows button {
+    border-radius: 50%;
+    width:25px;
+    height:25px;
+    background-color: transparent;
+    border-color: transparent;
+}
+#arrows svg {
+    fill:white;
+    stroke: white;
+}
+#arrows svg:hover {
+    fill:#f88379 !important;
+    stroke: #f88379 !important;
+    cursor: pointer;
+}
+#search-cont button {
+    border-radius: 20%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    background-color: transparent;
+    border-color: transparent;
+    cursor: pointer;
+}
+#search_btn svg {
+    color: white;
+    fill: white;
+    stroke:white;
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;  
+}
+.home svg {
+    flex-shrink: 0;
+    fill: #f88379;
+    width: 20px;
+    height: 20px;
+}
+.browse_icon svg {
+    flex-shrink: 0;
+    fill:white;
+    width:20px;
+    height:20px;
+}
+  
+#search-cont button:hover svg {
+    fill: #f88379;
+}
+
+#search {
+    background-color: #09111B;
+    border-radius: 5px;
+}
+#search_btn:hover svg{
+    color:#f88379;
+    stroke:#f88379;
+    transition: ease-in 0.2s;
+    
+}
+#search_btn.hovered svg {
+    fill: #f88379;
+    stroke: #f88379;
+    transition: ease-in 0.2s;
+
+}
+
+
+
+
+#user-cont button {
+    background-color: transparent;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    border-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.news svg {
+    width: 20px;
+    fill:transparent;
+    stroke: white;
+    height:20px;
+    flex-shrink: 0;
+}
+.friend_act svg {
+    flex-shrink: 0;
+    fill: white;
+    stroke: white;
+    width: 20px;
+    height:20px;
+}
+.news:hover svg {
+    stroke: #f88379;
+}
+.friend_act:hover svg {
+    fill:#f88379;
+    stroke:#f88379;
+    
+}
+.profile img {
+    width: 25px;
+    height:25px;
+}
+

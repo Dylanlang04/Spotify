@@ -1,94 +1,6 @@
 
 
 
-#topbar {
-    position: absolute;
-    top: 0px;
-    width: 100%;
-    height: 20%;
-    left: 0px;
-    
-}
-#arrows {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 100%;
-    display: flex;
-    justify-content: left;
-    
-}
-#market_wrap {
-    position: absolute;
-    top: 17px;
-    left: 80px;
-    width: 100%;
-    display: flex;
-    justify-content: left;
-}
-
-
-#search-cont {
-    position: inherit;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 20px;
-
-}
-.home {
-    margin-right: 15px;
-}
-.search_icon {
-    margin-right: 2px;
-    width:15px;
-
-}
-#search-cont img {
-    width: 15px;
-    height: auto;
-    margin-top: 5px;
-}
-.searchInput {
-    background-color: #09111B;
-    color: white;
-    border-color: transparent;
-    margin-top:2px;
-    width: 100%;
-    font-size: 10px;
-}
-#search {
-    margin-bottom: 5px;
-    display: flex;
-    height: 30px;
-    width:22%;
-    
-}
-.textfield {
-    position:inherit;
-    display: flex;
-}
-.browse_icon {
-    margin-left: 10px;
-    margin-right:5px;
-}
-#user-cont {
-    position: inherit;
-    display:flex;
-    justify-content: right;
-    width:100%;
-    margin-top: 20px;    
-}
-.news {
-    margin-right: 10px;
-}
-.friend_act {
-    margin-right:10px;
-}
-.profile {
-    margin-right: 10px;
-}
-
 
 
 #player {
@@ -172,4 +84,3 @@
 .playlists{
     margin-top: 3px;
 }
-

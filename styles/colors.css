@@ -1,58 +1,7 @@
 html {
     background-color: #131c26;
 }
-#topbar {
-    background-color: #131c26;
-}
-#arrows button {
-    border-radius: 50%;
-    width:25px;
-    height:25px;
-    background-color: transparent;
-    border-color: transparent;
-}
-#market_wrap button {
-    background-color: transparent;
-    border-color: transparent;
-}
-#market_wrap svg {
-    fill:white;
-    stroke: white;
-}
-#market_wrap svg:hover {
-    fill:#f88379 !important;
-    stroke: #f88379 !important;
-    cursor: pointer;
-}
-#arrows svg {
-    fill:white;
-    stroke: white;
-}
-#arrows svg:hover {
-    fill:#f88379 !important;
-    stroke: #f88379 !important;
-    cursor: pointer;
-}
-#search-cont button {
-    border-radius: 50%;
-    height: 25px;
-    width: 25px;
-    font-size: 15px;
-    font-weight: bold;
-    background-color: transparent;
-    color: white;
-    border-color: transparent;
 
-}
-#search {
-    background-color: #09111B;
-    border-radius: 5%;
-}
-#user-cont button {
-    background-color: transparent;
-    border-color: transparent;
-
-}
 .song_name {
     color: #f88379
     
@@ -60,18 +9,7 @@ html {
 .song_name:hover {
     cursor: pointer;
 }
-.news img {
-    width: 15px;
-    height:15px;
-}
-.friend_act img {
-    width: 15px;
-    height:15px;
-}
-.profile img {
-    width: 25px;
-    height:25px;
-}
+
 #test button {
     background-color: transparent;
     border-color: transparent;
@@ -86,4 +24,3 @@ html {
     stroke: #f88379 !important;
     cursor: pointer;
 }
-
