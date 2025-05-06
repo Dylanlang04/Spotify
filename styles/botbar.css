@@ -1,0 +1,72 @@
+
+#player {
+    position: absolute;
+    bottom:17px;
+    left:0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+#player button {
+    height:30px;
+    background-color: transparent;
+    border-radius: 50%;
+    border-color: transparent;
+    width:30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#player button:hover {
+    cursor: pointer;
+}
+
+.play, .shuffle, .back, .forward, .repeat {
+    z-index: 1;
+}
+.shuffle, .back, .forward, .repeat {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+}
+.play svg {
+    flex-shrink: 0;
+    width: 25px;
+    height: 25px;
+}
+
+
+#misc {
+    position: absolute;
+    bottom: 0px;
+    left:0px;
+    width: 100%;
+    display: flex;
+    justify-content: right;
+
+}
+#misc button {
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 50%;
+    width:30px;
+    height:30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}   
+#misc button:hover {
+    cursor: pointer;
+}
+.playing_view, .lyric_view, .queue, .device, .miniplayer, .fullscreen, .volume_slider, .volume {
+    z-index: 1;
+}
+.playing_view svg {
+    flex-shrink: 0;
+    width: 15px;
+    height:15px;
+}
+

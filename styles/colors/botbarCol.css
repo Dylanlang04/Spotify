@@ -1,0 +1,18 @@
+#player svg {
+    fill: white;
+    stroke: white;
+}
+#player button:hover svg {
+    fill:#f88379;
+    stroke:#f88379;
+    
+}
+#misc svg {
+    stroke: white;
+    fill: white;
+}
+
+#misc button:hover svg {
+    fill:#f88379;
+    stroke: #f88379;
+}

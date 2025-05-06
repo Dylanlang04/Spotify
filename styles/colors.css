@@ -2,25 +2,4 @@ html {
     background-color: #131c26;
 }
 
-.song_name {
-    color: #f88379
-    
-} 
-.song_name:hover {
-    cursor: pointer;
-}
 
-#test button {
-    background-color: transparent;
-    border-color: transparent;
-    border-radius: 50%;
-}
-#test svg {
-    fill: white;
-    stroke: white;
-}
-#test svg:hover {
-    fill: #f88379 !important;
-    stroke: #f88379 !important;
-    cursor: pointer;
-}

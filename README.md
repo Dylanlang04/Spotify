@@ -15,3 +15,6 @@ CHANGE-LOG:
       
   May 4th,  2025
       - UI is cringe, and painful.
+  
+  May 5th, 2025
+      - I actually hate doing HTML UI.
