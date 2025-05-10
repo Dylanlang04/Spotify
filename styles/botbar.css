@@ -61,7 +61,7 @@
 #misc button:hover {
     cursor: pointer;
 }
-.playing_view, .lyric_view, .queue, .device, .miniplayer, .fullscreen, .volume_slider, .volume {
+.playing_view, .lyric_view, .queue, .device, .miniplayer, .fullscreen, #volume_slider, .volume {
     z-index: 1;
 }
 .fullscreen svg, .miniplayer svg, .playing_view svg, .lyric_view svg, .queue svg, .device svg, .volume svg {
