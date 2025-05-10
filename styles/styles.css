@@ -3,32 +3,3 @@
 
 
 
-
-.fullscreen {
-
-    margin-right:10px;
-}
-
-
-
-
-#library-cont {
-    position:absolute;
-    width: 50px;
-    
-    top:0px;
-    left:0px;
-}
-#wrap {
-    margin-top: 50px;
-    margin-left: 10px;
-}
-.expand_lib{
-    margin-top: 3px;
-}
-.create_pl {
-    margin-top: 3px;
-}
-.playlists{
-    margin-top: 3px;
-}
