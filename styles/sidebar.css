@@ -1,0 +1,31 @@
+
+#library-cont {
+    position: absolute;
+    top:0px;
+    left:0px;
+    height: 100%;
+    width: 50px;
+    
+}
+
+#library-cont button {
+    border-radius: 50%;
+    width: 30px;
+    height:30px;
+}
+#wrap {
+    margin-left: 5px;
+    margin-top: 60px;
+    color: white;
+    
+}
+.create_pl {
+    margin-top: 8px;
+}
+.liked {
+    margin-top: 8px;
+}
+.playlists{
+    height: 440px;
+    margin-top: 8px;
+}
