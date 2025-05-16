@@ -1,0 +1,40 @@
+#type_wrapper {
+    position: fixed;
+    margin-left: 40px;
+    margin-top: 15px;
+    
+
+}
+#type_wrapper button {
+    border-radius: 15px;
+    color:white;
+    background-color: grey;
+    border: transparent;
+    height: 30px;
+    padding: 0 10px;
+    margin-left: 2px;
+    font-weight: bold;
+
+    
+    
+    
+
+}
+#fullscreen1 {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: white;
+    border-radius: 15px;
+}
+
+#results {
+    margin-top: 60px;
+    margin-left: 40px;
+    height: 200px;
+
+}
+#results button {
+    background-color: black;
+    width: 23%;
+    height: 40%;
+}
