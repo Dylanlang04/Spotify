@@ -1,4 +1,4 @@
-const vol_icon = document.getElementsByClassName("volume")
+
 
 
 function checkVol() {
