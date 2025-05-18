@@ -1,0 +1,65 @@
+#library-cont.expand {
+    position: absolute;
+    top:0px;
+    left:0px;
+    bottom: 60px;
+    background-color: red;
+    border-radius: 15px;
+    color:white;
+    width:22%;
+    
+}
+
+#library-cont.expand button {
+
+    border-radius: 50%;
+    width: 30px;
+    height:30px;
+}
+#wrap.expand {
+    margin-left: 5px;
+    margin-top: 60px;
+    color: white;
+    
+}
+#pl.expand {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height:calc(100vh - 210px);
+}
+.playlists.expand {
+
+}
+
+#expand.expand {
+    position: absolute;
+    right: 10px;
+    background-color: black;
+}
+#create_pl.expand {
+    position: absolute;
+    right: 50px;
+}
+#your_lib {
+    position:absolute;
+    top: 62px;
+    left:40px;
+    font-size: 20px;
+    color: white;
+}
+
+
+
+
+
+#fullscreen1.expand {
+    position: absolute;
+    top: 60px;
+    left:23%;
+    bottom: 60px;
+    right: 70px;
+    background-color: white;
+    border-radius: 15px;
+    z-index: 1;
+    overflow-y: auto;
+}

@@ -20,12 +20,7 @@
     
 
 }
-#fullscreen1 {
-    overflow-x: hidden;
-    overflow-y: hidden;
-    background-color: white;
-    border-radius: 15px;
-}
+
 
 #results {
     margin-top: 60px;
