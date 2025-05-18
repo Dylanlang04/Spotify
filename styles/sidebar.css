@@ -3,7 +3,9 @@
     position: absolute;
     top:0px;
     left:0px;
-    height: 100%;
+    bottom: 60px;
+    border-radius: 15px;
+    color: white;
     width: 50px;
     
 }
@@ -19,7 +21,13 @@
     color: white;
     
 }
-
+#pl {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height:calc(100vh - 210px);
+}
 .playlists{
-    height: 440px;
+}
+.hidden {
+    display: none;
 }
