@@ -21,3 +21,5 @@ const wrap = document.getElementById("wrap")
 const fullscreen = document.getElementById("fullscreen1")
 const expand = document.getElementById("expand")
 const your_lib = document.getElementById("your_lib")
+const expand_lib = document.getElementById("expand_lib")
+
