@@ -18,7 +18,7 @@
 }
 #wrap.expand {
     margin-left: 5px;
-    margin-top: 60px;
+    margin-top: 40px;
     color: white;
     
 }
@@ -41,11 +41,29 @@
     right: 50px;
 }
 #your_lib {
-    position:absolute;
-    top: 62px;
-    left:40px;
+    position:relative;
+    transform: translate(0px);
+    top: 25px;
+    left:10px;
     font-size: 20px;
+    transition: transform 0.3s ease;
     color: white;
+}
+#expand_lib.expand {
+    position: relative;
+    opacity: 0;
+    left:-35px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+#library-cont.expand:hover #expand_lib.expand {
+    transform: translateX(35px);
+    opacity: 1;
+    cursor: pointer;
+}
+#library-cont.expand:hover #your_lib {
+    transform: translateX(25px);
+    opacity: 1;
+    cursor: pointer;
 }
 
 
