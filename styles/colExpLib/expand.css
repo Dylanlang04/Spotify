@@ -3,7 +3,6 @@
     top:0px;
     left:0px;
     bottom: 60px;
-    background-color: red;
     border-radius: 15px;
     color:white;
     width:22%;
@@ -65,6 +64,79 @@
     opacity: 1;
     cursor: pointer;
 }
+#library-cont.expand #pl_filters {
+    display: flex;
+    margin-left:15px;
+    margin-top: 10px;
+    gap: 5px;
+}
+
+#library-cont #pl_filters #back {
+    color:white;
+    background-color: grey;
+    height: 30px;
+    border-radius: 50%;
+    width:30px;
+    padding: 0 5px;
+    margin-left: 2px;
+    font-weight: bold;
+}
+#library-cont #pl_filters #playlist_filt {
+    color:white;
+    background-color: grey;
+    height: 30px;
+    border-radius: 15px;
+    width:auto;
+    padding: 0 5px;
+    margin-left: 2px;
+    font-weight: bold;
+}
+#library-cont #pl_filters #albums_filt {
+    color:white;
+    background-color: grey;
+    height: 30px;
+    border-radius: 15px;
+    width:auto;
+    padding: 0 5px;
+    margin-left: 2px;
+    font-weight: bold;
+}
+
+
+#library-cont.expand #search_filt {
+    margin-top: 10px;
+    display:flex;
+    justify-content: space-between;
+    position: relative;
+}
+#library-cont #search_filt #pl_search {
+    color:white;
+    background-color:transparent;
+    margin-left: 15px;
+    
+    height: 30px;
+    border-radius: 50%;
+    width:30px;
+    
+}
+#library-cont #search_filt #pl_search:hover {
+    background-color: grey;
+    font-weight: bold;
+}
+#library-cont.expand #search_filt #pl_filter {
+    color:white;
+    background-color: transparent;
+    width: auto !important;
+    border-radius: 0%;
+    
+}
+#library-cont #search_filt #pl_filter:hover {
+    
+    font-weight: bold;
+}
+
+
+
 
 
 
