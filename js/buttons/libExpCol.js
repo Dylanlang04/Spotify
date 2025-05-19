@@ -13,8 +13,8 @@ function expandCol() {
         expand.classList.add("expand")
         expand.classList.remove("hidden")
         your_lib.classList.remove("hidden")
-        library_cont.addEventListener("mouseenter", expandAnimation)
-        library_cont.addEventListener("mouseleave", expandAnimationLeave)
+        pl_filters.classList.remove("hidden")
+        search_filt.classList.remove("hidden")
         track = 0
     } else {
         lib.classList.remove("expand")
@@ -27,8 +27,9 @@ function expandCol() {
         expand.classList.remove("expand")
         expand.classList.add("hidden")
         your_lib.classList.add("hidden")
-        library_cont.removeEventListener("mouseenter", expandAnimation)
-        library_cont.removeEventListener("mouseleave", expandAnimationLeave)
+        pl_filters.classList.add("hidden")
+        search_filt.classList.add("hidden")
+        
         track = 1
     }
 
