@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="./styles/colors/sidebarCol.css">
     <link rel="stylesheet" type="text/css" href="./styles/fullscreen.css">
     <link rel="stylesheet" type="text/css" href="./styles/home/home.css">
+    <link rel="stylesheet" type="text/css" href="./styles/playingView/playingView.css">
     <link rel="stylesheet" type="text/css" href="./styles/colExpLib/expand.css">
   
 
@@ -20,10 +21,50 @@
     <title>Spotfiy</title>
   </head>
   <body>
-      
-    <div id="fullscreen1">
+    
+        <div id="fullscreen1">
+            
+        </div>
+        
+    <div id="playingView" class="hidden">
+        <div class="playView-scroll">
+            <div id="pv_top">
+
+                <button id="hide_pv">hide</button>
+                <div id="pv_playlist">Playlist</div>
+                <button id="song_opt">Opt</button>
+                <button id="expand_pv">Exp</button>
+            </div>
+            <div id="pv_song_inf">
+                <div id="pv_song_art">
+                    <div id="pv_title">SONG TITLE</div>
+                    <div id="pv_artisit">ARTIST</div>
+                </div>
+           
+                <button id="share_song">Share</button>
+                <button id="addtoliked">+</button>
+            </div>
+
+            <div id="artist_panel">
+                <div id="art_img">
+                    <div id="about_art">About the Artist</div>
+                </div>
+                
+                <div id="art_info">
+                    <div id="art_name">NAME</div>
+                    <div id="mont_list">0000000 monthly listeners</div>
+                    <button id="follow_art">Follow</button>
+                    <div id="art_desc">desc</div>
+                </div>
+            
+            </div>
+            <div id="credits"></div>
+            <div id="next_queue"></div>
+            <div id="spacer"></div>
+        </div>
         
     </div>
+    
     <div id="arrows">
         <button class="arrow1"><svg width="15px" height="15px" fill="currentColor" version="1.1" baseProfile="tiny" id="Layer_1" xmlns:x="&amp;ns_extend;" xmlns:i="&amp;ns_ai;" xmlns:graph="&amp;ns_graphs;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" viewBox="0 0 42 42" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <polygon fill-rule="evenodd" points="31,38.32 13.391,21 31,3.68 28.279,1 8,21.01 28.279,41 "></polygon> </g></svg></button>
         <button class="arrow2"><svg width="15px" height="15px" fill="currentColor" version="1.1" baseProfile="tiny" id="Layer_1" xmlns:x="&amp;ns_extend;" xmlns:i="&amp;ns_ai;" xmlns:graph="&amp;ns_graphs;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" viewBox="0 0 42 42" xml:space="preserve" transform="matrix(-1, 0, 0, 1, 0, 0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <polygon fill-rule="evenodd" points="31,38.32 13.391,21 31,3.68 28.279,1 8,21.01 28.279,41 "></polygon> </g></svg></button>
@@ -126,7 +167,7 @@
     
 
     <div id="misc">
-        <button class="playing_view">
+        <button id="playing_view" class="playing_view">
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 485 485" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M0,0v485h485V0H0z M455,455H30V30h425V455z"></path> <polygon points="181.062,148.425 181.062,336.575 343.938,242.5 "></polygon> </g> </g></svg>
         </button>
         <button class="lyric_view">
@@ -153,13 +194,17 @@
 
     </div>
   
-        
+    
+
+    </div>
     <div id="page">
         
     </div>
 
     <script src="js/global/vars.js"></script>
-    <script src="js/home/home.js"></script>
+    <script src="js/buttons/home/home.js"></script>
+    <script src="js/buttons/browse/browse.js"></script>
+    <script src="js/buttons/nowPlaying/nowPlaying.js"></script>
     <script src="js/cssHelper.js"></script>
     <script src="js/volume.js"></script>
     <script src="js/buttons/libExpCol.js"></script>
