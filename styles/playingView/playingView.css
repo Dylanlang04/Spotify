@@ -1,0 +1,164 @@
+.playView {
+    position: absolute;
+    top: 60px;
+    bottom: 60px;
+    right: 10px;
+    width:21%;
+    
+    z-index: 2;
+    border-radius: 15px;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+}
+.playView .playView-scroll {
+    overflow-y: auto;
+    position: relative;
+    flex-grow: 1;
+}
+#spacer {
+    position: absolute;
+    top: 1260px;
+    width: 10px;
+    height:10px;
+    
+}
+#pv_top {
+    position: fixed;
+    height: 50px;
+    z-index: 2;
+    width: 21%;
+    display: flex;
+    color: white;
+    background-color: black;
+}
+#pv_top button {
+    border-radius: 50%;
+    background-color: black;
+    color:white;
+    width: 20px;
+    height: 20px;
+    border: transparent;
+}
+#expand_pv {
+    position: absolute;
+    right: 20px;
+}
+#song_opt {
+    position: absolute;
+    right: 60px;
+}
+
+
+
+#pv_song_inf {
+    display: flex;
+
+    position: absolute;
+    color:white;
+    top:430px;
+    width: 100%;
+}
+#pv_song_inf button {
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    border: transparent;
+    width: 20px;
+    height: 20px;
+}
+#addtoliked {
+    position: absolute;
+    right: 20px;
+}
+#share_song {
+    position: absolute;
+    right: 60px;
+}
+
+
+
+#artist_panel {
+    position: absolute;
+    top: 480px;
+    height: 450px;
+    left: 10px;
+    width: 95%;
+    border-radius: 15px;
+    color: white;
+    overflow: hidden;
+    background-color: black;
+    
+}
+#art_img {
+    position: absolute;
+    top:0;
+    left:0;
+    bottom:200px;
+    right:0px;
+    border-radius: 15px;
+}
+#about_art {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    font-weight:bold ;
+}
+#art_info {
+    position: absolute;
+    top: 280px;
+    width: 100%;
+    height:170px;
+    background-color: gray;
+    
+}
+#art_name {
+    position: absolute;
+    top:20px;
+    left: 20px;
+}
+#mont_list {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+}
+#follow_art {
+    position: absolute;
+    border-radius: 15px;
+    border-color: white;
+    border-width: 1px; 
+    color: white;
+    background-color: transparent;
+    height: 30px;
+    width: auto;
+    font-weight: bold;
+    padding: 0 15px;
+    top:50px;
+    right: 20px;
+}
+#art_desc {
+    position: absolute;
+    top:80px;
+    left: 20px;
+}
+
+#credits {
+    position: absolute;
+    top: 945px;
+    width: 95%;
+    left:10px;
+    border-radius: 15px;
+    background-color: red;
+    height: 200px;
+}
+
+#next_queue {
+    position: absolute;
+    top: 1160px;
+    width: 95%;
+    left:10px;
+    border-radius: 15px;
+    background-color: red;
+    height: 100px;
+}
