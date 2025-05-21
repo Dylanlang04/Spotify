@@ -68,6 +68,9 @@
     width: 20px;
     height: 20px;
 }
+#pv_song_inf {
+    margin-left: 10px;
+}
 #addtoliked {
     position: absolute;
     right: 20px;
@@ -128,6 +131,7 @@
     border-radius: 15px;
     border-color: white;
     border-width: 1px; 
+    border-style: solid;
     color: white;
     background-color: transparent;
     height: 30px;
@@ -151,7 +155,72 @@
     border-radius: 15px;
     background-color: red;
     height: 200px;
+    color: white;
 }
+
+
+#cred_top {
+    width:100%;
+    display:flex;
+    top: 20px;
+    position: absolute;
+    
+    
+}
+#cred {
+    position: absolute;
+    left: 10px;
+    font-weight: bold;
+}
+#showAll {
+    position: absolute;
+    right: 10px;
+    
+}
+
+#art_info_wrapper {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    display: flex;
+}
+
+#cred_follow {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    border-radius: 15px;
+    border-color: white;
+    border-width: 1px; 
+    border-style: solid;
+    color: white;
+    background-color: transparent;
+    height: 30px;
+    width: auto;
+    font-weight: bold;
+    padding: 0 15px;
+}
+
+#second_info {
+    position: absolute;
+    width: 100%;
+    top: 100px;
+}
+
+
+
+
+#third_info {
+    position: absolute;
+    width: 100%;
+    top: 150px;
+}
+.cred_wrapper {
+    position: absolute;
+    left: 10px;
+}
+
+
 
 #next_queue {
     position: absolute;
@@ -160,5 +229,43 @@
     left:10px;
     border-radius: 15px;
     background-color: red;
+    color: white;
     height: 100px;
+}
+
+#next_top {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    top: 15px;
+}
+#nextQueue {
+    position: absolute;
+    left: 10px;
+    font-weight: bold;
+}
+#open_queue {
+    position: absolute;
+    right: 10px;
+}
+
+#queue_song {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    display: flex;
+}
+#q_songimg {
+    width: 40px;
+    height:40px;
+    position: absolute;
+    left: 10px;
+}
+#q_songinfo {
+    position: absolute;
+    left: 70px;
+}
+#q_artists {
+    position: absolute;
+    top: 22px;
 }
