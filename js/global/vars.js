@@ -35,3 +35,6 @@ const pl_filter = document.getElementById("pl_filter")
 //now_playing
 const playing_view = document.getElementById("playing_view")
 const playingView = document.getElementById("playingView")
+
+//browse
+const browse = document.getElementById("browse")

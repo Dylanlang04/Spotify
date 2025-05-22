@@ -1,0 +1,40 @@
+
+
+.browseall {
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    font-size: 30px;
+    width: 50%;
+    font-weight: bold;
+}
+
+#categories {
+    position: absolute;
+    top: 100px;
+    left: 0px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 10px 20px;
+    box-sizing: border-box;
+    width: 100%;
+    gap: 16px;
+
+}
+#categories button {
+    position: relative;
+    aspect-ratio: 2 / 1;
+    width: 100%;
+    background-color: black;
+    border-radius: 15px;
+    border-color: none;
+}
+.cat_title {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
