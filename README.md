@@ -1,6 +1,10 @@
 # Spotify
 The goal of this project is to COMPLETELY rebuild spotifys desktop app over the summer of 2025
 
+THIS PROJECT IS FAR FROM COMPLETE AND IS A WIP, the goal is to also make this app customizable (Allow users to changes colors etc.)
+
+if you want to view the app as is just download the file. open a command prompt in the directory. run 'npm install' then 'npm run start' and it will launch the electron app
+
 
 CHANGE-LOG:
 
@@ -21,3 +25,8 @@ CHANGE-LOG:
 
   May 6th, 2025
       - More Ui... 
+
+  May 21st, 2025
+      - I got lazy updating this, its all just been UI work.
+
+      
