@@ -38,3 +38,10 @@ const playingView = document.getElementById("playingView")
 
 //browse
 const browse = document.getElementById("browse")
+
+//lyric
+
+const lyric_view = document.getElementById("lyric_view") 
+
+//news
+const news = document.getElementById("news")

@@ -1,0 +1,13 @@
+#lyrics {
+    position: absolute;
+    top: 40px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.lyric {
+    margin-left: 50px;
+    margin-top: 20px;
+    font-size: 40px;
+
+}
