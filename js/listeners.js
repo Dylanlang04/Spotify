@@ -8,6 +8,7 @@ function loadListeners() {
     browse.addEventListener("click", browsePage)
     lyric_view.addEventListener("click", lyricView)
     news.addEventListener("click", newsView)
+    queue.addEventListener("click", songQueue)
 
     window.addEventListener("resize", updateScreenPosition)
     

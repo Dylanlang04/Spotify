@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="./styles/home/home.css">
     <link rel="stylesheet" type="text/css" href="./styles/whatsnew/whatsnew.css">
     <link rel="stylesheet" type="text/css" href="./styles/browse/browse.css">
+    <link rel="stylesheet" type="text/css" href="./styles/queue/queue.css">
     <link rel="stylesheet" type="text/css" href="./styles/playingView/playingView.css">
     <link rel="stylesheet" type="text/css" href="./styles/colExpLib/expand.css">
     <link rel="stylesheet" type="text/css" href="./styles/lyric/lyric.css">
@@ -110,6 +111,37 @@
             <div id="spacer"></div>
         </div>
         
+    </div>
+    <div id="queueView" class="hidden">
+        <div class="queue-scroll">
+            <div id="q_topbar">
+                <button id="q_btn"> Queue</button>
+                <button id="rec_btn">Recently played</button>
+                <button id="x_btn">X</button>
+            </div>
+            <div id="playing">
+                <div id="now_playing">Now playing</div>
+                <div id="q_song_playing">
+                    <div id="q_now_songimg">IMAGE</div>
+                    <div id="q_now_song_info">
+                        <div id="q_title">TITLE</div>
+                        <div id="q_art">ARTIST</div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div id="jam"> jam sync devices. ALL BACKEND</div>
+            <div id="song_q">
+                <div id="q_list_wrapper">
+                    <div id="next_pl">Next from: </div>
+                    <div id="play_tit">placeholder</div>
+                </div>
+                
+                <div id="song_list">
+
+                </div>
+            </div>
+        </div>       
     </div>
     
     <div id="arrows">
@@ -220,7 +252,7 @@
         <button id="lyric_view" class="lyric_view">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" transform="rotate(45)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M6,7a5.986,5.986,0,0,0,2.128,4.576l.709,8.514a3.174,3.174,0,0,0,6.326,0l.709-8.514A6,6,0,1,0,6,7Zm7.169,12.924a1.173,1.173,0,0,1-2.338,0l-.6-7.191A6.638,6.638,0,0,0,12,13a6.629,6.629,0,0,0,1.769-.267ZM16,7c0,5.218-8,5.188-8,0a4,4,0,0,1,8,0Z"></path></g></svg>
         </button>
-        <button class="queue">
+        <button id="queue" class="queue">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M22,4H2A1,1,0,0,0,1,5v6a1,1,0,0,0,1,1H22a1,1,0,0,0,1-1V5A1,1,0,0,0,22,4Zm-1,6H3V6H21Zm2,5a1,1,0,0,1-1,1H2a1,1,0,0,1,0-2H22A1,1,0,0,1,23,15Zm0,4a1,1,0,0,1-1,1H2a1,1,0,0,1,0-2H22A1,1,0,0,1,23,19Z"></path></g></svg>
         </button>
         <button class="device">
@@ -253,11 +285,13 @@
     <script src="js/buttons/browse/browse.js"></script>
     <script src="js/buttons/whatsnew/whatsnew.js"></script>
     <script src="js/buttons/nowPlaying/nowPlaying.js"></script>
+    <script src="js/buttons/queue/queue.js"></script>
     <script src="js/buttons/lyric/lyric.js"></script>
     <script src="js/cssHelper.js"></script>
     <script src="js/volume.js"></script>
     <script src="js/buttons/libExpCol.js"></script>
     <script src="js/listeners.js"></script>
+    <script src="js/resize.js"></script>
     <script src="js/load.js"></script>
 
   </body>

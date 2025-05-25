@@ -17,10 +17,3 @@ function playView() {
 
 }
 
-function updateScreenPosition() {
-    if (view = 1) {
-        const playviewWidth = playingView.getBoundingClientRect().width
-        fullscreen.style.right = `${playviewWidth + 20}px`
-    }
-    
-}
