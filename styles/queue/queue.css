@@ -1,0 +1,111 @@
+.queueView {
+    position: absolute;
+    top: 60px;
+    bottom: 60px;
+    right: 10px;
+    width:21%;
+    
+    z-index: 2;
+    border-radius: 15px;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+}
+.queueView .queue-scroll {
+    overflow-y: auto;
+    position: relative;
+    flex-grow: 1;
+}
+
+#q_topbar {
+    position: fixed;
+    height: 50px;
+    z-index: 2;
+    width: 21%;
+    display: flex;
+    color: white;
+    background-color: white;
+    align-items: center;
+}
+#q_topbar button {
+    
+    background-color: black;
+    color:white;
+    width: auto;
+    height: 30px;
+    border: transparent;
+}
+#q_btn {
+    position: absolute;
+    left: 15px;
+}
+#rec_btn {
+    position: absolute;
+    left: 75px;
+}
+#x_btn {
+    position: absolute;
+    right: 15px;
+}
+
+#playing {
+    position: absolute;
+    top: 80px;
+    width: 100%;
+    color: white;
+    left: 0px;
+    height: 100px;
+    
+}
+#now_playing {
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 15px;
+}
+
+
+#q_song_playing {
+    position: absolute;
+    top:35px;
+    display: flex;    
+    
+    
+}
+#q_now_songimg {
+    margin-left: 15px;
+}
+#q_now_song_info {
+    margin-left: 15px;
+}
+#jam {
+    position: absolute;
+    top: 180px;
+    height: 115px;
+    left: 10px;
+    width: 95%;
+    border-radius: 15px;
+    color: white;
+    overflow: hidden;
+    background-color: black;
+    
+}
+
+
+#song_q {
+    position: absolute;
+    top:320px;
+    width: 100%;
+    color: white;
+}
+#q_list_wrapper {
+    display: flex;
+    margin-left: 15px;
+}
+
+#song_list {
+    margin-top: 10px;
+    width: 100%;
+    background-color: black;
+    height: 10px
+}

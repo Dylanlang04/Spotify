@@ -45,3 +45,7 @@ const lyric_view = document.getElementById("lyric_view")
 
 //news
 const news = document.getElementById("news")
+
+//queue 
+const queue = document.getElementById("queue")
+const queueView = document.getElementById("queueView")
