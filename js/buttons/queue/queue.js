@@ -6,7 +6,8 @@ function songQueue() {
         playingView.classList.remove("playView")
         queueView.classList.remove("hidden")
         queueView.classList.add("queueView")
-        
+        friendView.classList.add("hidden")
+        friendView.classList.remove("friendView")
         const queueWidth = queueView.getBoundingClientRect().width;
         fullscreen.style.right = `${queueWidth + 20}px`
         view1 = 1
@@ -14,6 +15,10 @@ function songQueue() {
     } else {
         queueView.classList.add("hidden")
         queueView.classList.remove("queueView")
+        playingView.classList.add("hidden")
+        playingView.classList.remove("playView")
+        friendView.classList.add("hidden")
+        friendView.classList.remove("friendView")
         fullscreen.style.right = "70px"
         view1 = 0
     }

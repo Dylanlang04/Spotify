@@ -9,6 +9,7 @@ function loadListeners() {
     lyric_view.addEventListener("click", lyricView)
     news.addEventListener("click", newsView)
     queue.addEventListener("click", songQueue)
+    friend_act.addEventListener("click", friendActView)
 
     window.addEventListener("resize", updateScreenPosition)
     
