@@ -49,3 +49,7 @@ const news = document.getElementById("news")
 //queue 
 const queue = document.getElementById("queue")
 const queueView = document.getElementById("queueView")
+
+//friendact
+const friend_act = document.getElementById("friend_act")
+const friendView = document.getElementById("friendView")
