@@ -8,6 +8,9 @@ function updateScreenPosition() {
     } else if (view2 === 1) {
         const friendWidth = friendView.getBoundingClientRect().width
         fullscreen.style.right = `${friendWidth + 20}px`
+    } else if (view3 === 1) {
+        const deviceWidth = deviceView.getBoundingClientRect().width
+        fullscreen.style.right = `${deviceWidth + 20}px`
     }
 
     

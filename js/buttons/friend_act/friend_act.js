@@ -16,6 +16,8 @@ function friendActView() {
         playingView.classList.remove("playView")
         friendView.classList.add("hidden")
         friendView.classList.remove("friendView")
+        deviceView.classList.add("hidden")
+        deviceView.classList.remove("deviceView")
         queueView.classList.add("hidden")
         queueView.classList.remove("queueView")
         fullscreen.style.right = "70px"
