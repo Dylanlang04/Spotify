@@ -11,7 +11,7 @@ function loadListeners() {
     queue.addEventListener("click", songQueue)
     friend_act.addEventListener("click", friendActView)
     devicebtn.addEventListener("click", devicesView)
-
+//test
     window.addEventListener("resize", updateScreenPosition)
     
 }
