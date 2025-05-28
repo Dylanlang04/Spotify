@@ -30,7 +30,9 @@ const albums_filt = document.getElementById("albums_filt")
 const search_filt = document.getElementById("search_filt")
 const pl_search = document.getElementById("pl_search")
 const pl_filter = document.getElementById("pl_filter")
-
+//switch views
+var last = 0;
+var lastStyle = 0;
 
 //now_playing
 const playing_view = document.getElementById("playing_view")
