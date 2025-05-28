@@ -101,7 +101,7 @@
 
 #library-cont #pl_filters #back {
     color:white;
-    background-color: grey;
+   
     height: 30px;
     border-radius: 50%;
     width:30px;
@@ -111,7 +111,7 @@
 }
 #library-cont #pl_filters #playlist_filt {
     color:white;
-    background-color: grey;
+    
     height: 30px;
     border-radius: 15px;
     width:auto;
@@ -121,7 +121,7 @@
 }
 #library-cont #pl_filters #albums_filt {
     color:white;
-    background-color: grey;
+    
     height: 30px;
     border-radius: 15px;
     width:auto;
@@ -188,6 +188,28 @@
     stroke:#f88379;
 }
 
+
+#pl.expand .playlist {
+    margin-top: 10px;
+    margin-left: 6px;
+    color: white;
+    z-index: 3;
+    height: 54px;
+    width: 98%;
+    border-radius: 8px;
+    background-color: black;
+    border-color: transparent;
+   
+} 
+#wrap button, #search_filt button {
+    width: 50%;
+    background-color: transparent;
+    border-color: transparent;
+}
+#pl_filters button {
+    border-color: transparent;
+    background-color: dimgray;
+}
 
 #fullscreen1.expand {
     position: absolute;

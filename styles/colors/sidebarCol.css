@@ -1,9 +1,4 @@
-#library-cont button {
-    background-color: transparent;
-    border-color: transparent;
-    cursor:pointer;
-    z-index: 2;
-}
+
 .expand_lib svg {
     fill: white;
     width: 20px;
@@ -26,4 +21,7 @@
     fill:#f88379;
     color: #f88379;
     
+}
+.playlist button {
+    background-color: red;
 }
