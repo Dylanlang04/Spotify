@@ -10,7 +10,6 @@
 }
 
 .create_pl svg {
-    stroke: white;
     fill: white;
     width: 15px;
 }
@@ -19,8 +18,10 @@
     width: 15px;
 }
 .create_pl:hover svg {
-    stroke: #f88379
+    stroke: white;
+    fill: white;
 }
+
 #wrap button:hover svg {
     fill:#f88379;
     color: #f88379;

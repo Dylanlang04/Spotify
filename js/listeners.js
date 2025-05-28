@@ -7,6 +7,7 @@ function loadListeners() {
     browse.addEventListener("click", browsePage)
     lyric_view.addEventListener("click", lyricView)
     news.addEventListener("click", newsView)
+    vol_btn.addEventListener("click", clickVolume)
     playing_view.addEventListener("click", () => switchView(playingView, "playView"))
     queue.addEventListener("click", () => switchView(queueView, "queueView"))
     friend_act.addEventListener("click", () => switchView(friendView, "friendView"))
