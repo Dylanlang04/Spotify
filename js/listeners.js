@@ -4,13 +4,13 @@ function loadListeners() {
     volume.addEventListener("input", checkVol)
     home.addEventListener("click", homePage)
     lib.addEventListener("click", expandCol)
-    playing_view.addEventListener("click", playView)
     browse.addEventListener("click", browsePage)
     lyric_view.addEventListener("click", lyricView)
     news.addEventListener("click", newsView)
-    queue.addEventListener("click", songQueue)
-    friend_act.addEventListener("click", friendActView)
-    devicebtn.addEventListener("click", devicesView)
+    playing_view.addEventListener("click", () => switchView(playingView, "playView"))
+    queue.addEventListener("click", () => switchView(queueView, "queueView"))
+    friend_act.addEventListener("click", () => switchView(friendView, "friendView"))
+    devicebtn.addEventListener("click", () => switchView(deviceView, "deviceView"))
 
     window.addEventListener("resize", updateScreenPosition)
     
