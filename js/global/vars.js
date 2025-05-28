@@ -53,3 +53,7 @@ const queueView = document.getElementById("queueView")
 //friendact
 const friend_act = document.getElementById("friend_act")
 const friendView = document.getElementById("friendView")
+
+//device
+const devicebtn = document.getElementById("device")
+const deviceView = document.getElementById("deviceView")

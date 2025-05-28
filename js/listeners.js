@@ -10,6 +10,7 @@ function loadListeners() {
     news.addEventListener("click", newsView)
     queue.addEventListener("click", songQueue)
     friend_act.addEventListener("click", friendActView)
+    devicebtn.addEventListener("click", devicesView)
 
     window.addEventListener("resize", updateScreenPosition)
     

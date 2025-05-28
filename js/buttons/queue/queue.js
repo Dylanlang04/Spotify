@@ -19,6 +19,8 @@ function songQueue() {
         playingView.classList.remove("playView")
         friendView.classList.add("hidden")
         friendView.classList.remove("friendView")
+        deviceView.classList.add("hidden")
+        deviceView.classList.remove("deviceView")
         fullscreen.style.right = "70px"
         view1 = 0
     }

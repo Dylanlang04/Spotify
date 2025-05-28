@@ -1,0 +1,138 @@
+.deviceView {
+    position: absolute;
+    top: 60px;
+    bottom: 60px;
+    right: 10px;
+    width:21%;
+    
+    z-index: 2;
+    border-radius: 15px;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+}
+.deviceView .device-scroll {
+    overflow-y: auto;
+    position: relative;
+    flex-grow: 1;
+}
+
+#device_topbar {
+    color: white;
+    position: fixed;
+    height: 50px;
+    width: 21%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+
+}
+
+
+#device_topbar button {
+    border-radius: 50%;
+    background-color: black;
+    color:white;
+    width: 20px;
+    height: 20px;
+    border: transparent;
+}
+#connect_titl {
+    position: absolute;
+    left: 15px;
+}
+#device_x {
+    position: absolute;
+    right: 15px;
+}
+#device_jam {
+    position: absolute;
+    color: white;
+    top: 70px;
+    left: 10px;
+    height: 100px;
+    background-color: black;
+    width: 95%;
+    border-radius: 15px;
+}
+#wired_conn {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 20px;
+
+}
+#dev_jamwrapper {
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    display: flex;
+
+}
+#d_jam_text {
+    position: absolute;
+    left: 15px;
+}
+#d_start_jam {
+    position: absolute;
+    right: 0px;
+    background-color: transparent;
+    border-color: white;
+    border-radius: 1px;
+    color: white;
+    border-style: solid;
+    padding: 0 10px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+
+
+#devices {
+    position: absolute;
+    top: 180px;
+    height: 300px;
+    width: 100%;
+    color: white;
+    overflow: hidden;
+}
+.d_device {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    margin-left: 30px;
+    width: 95%;
+}
+
+.d_device #device_info {
+    margin-left: 5px;
+}
+
+
+#FAQ {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+}
+.question {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.question #q_text {
+   margin-left: 15px;
+   color: white;
+
+}
+.question #q_link {
+    margin-right: 15px;
+    color: white;
+    height: 30px;
+    width: 30px;
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 50%;
+}
