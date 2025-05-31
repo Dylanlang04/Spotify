@@ -2,7 +2,7 @@
 
 
 //volume
-const volume = document.getElementById("volumeSlider")
+
 const home = document.getElementById("home_btn")
 
 //volume.js
