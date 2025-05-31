@@ -21,9 +21,10 @@
     <link rel="stylesheet" type="text/css" href="./styles/playingView/playingView.css">
     <link rel="stylesheet" type="text/css" href="./styles/colExpLib/expand.css">
     <link rel="stylesheet" type="text/css" href="./styles/lyric/lyric.css">
-  
-
-
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/@mui/material@5.15.14/umd/material-ui.development.js"></script>
     <title>Spotfiy</title>
   </head>
   <body>
@@ -359,7 +360,7 @@
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12.43,4.1a1,1,0,0,0-1,.12L6.65,8H3A1,1,0,0,0,2,9v6a1,1,0,0,0,1,1H6.65l4.73,3.78A1,1,0,0,0,12,20a.91.91,0,0,0,.43-.1A1,1,0,0,0,13,19V5A1,1,0,0,0,12.43,4.1ZM11,16.92l-3.38-2.7A1,1,0,0,0,7,14H4V10H7a1,1,0,0,0,.62-.22L11,7.08ZM19.66,6.34a1,1,0,0,0-1.42,1.42,6,6,0,0,1-.38,8.84,1,1,0,0,0,.64,1.76,1,1,0,0,0,.64-.23,8,8,0,0,0,.52-11.79ZM16.83,9.17a1,1,0,1,0-1.42,1.42A2,2,0,0,1,16,12a2,2,0,0,1-.71,1.53,1,1,0,0,0-.13,1.41,1,1,0,0,0,1.41.12A4,4,0,0,0,18,12,4.06,4.06,0,0,0,16.83,9.17Z"></path></g></svg>
         </button>
         <div id="volume_slider">
-            <input type="range" min="1" max="100" value="50" class="slider" id="volumeSlider">
+            
         </div>
         <button class="miniplayer">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="0.00024000000000000003"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M3 6C3 4.34315 4.34315 3 6 3H18C19.6569 3 21 4.34315 21 6V18C21 19.6569 19.6569 21 18 21H6C4.34315 21 3 19.6569 3 18V6ZM6 5H18C18.5523 5 19 5.44772 19 6V12.2676C18.7058 12.0974 18.3643 12 18 12H14C12.8954 12 12 12.8954 12 14V18C12 18.3643 12.0974 18.7058 12.2676 19H6C5.44772 19 5 18.5523 5 18V6C5 5.44772 5.44772 5 6 5Z"></path> </g></svg>
@@ -377,6 +378,8 @@
         
     </div>
 
+    <script src="js/volume.js"></script>
+    
     <script src="js/global/vars.js"></script>
     <script src="js/buttons/home/home.js"></script>
     <script src="js/buttons/browse/browse.js"></script>
@@ -384,7 +387,8 @@
     <script src="js/buttons/lyric/lyric.js"></script>
     <script src="js/switchView.js"></script>
     <script src="js/cssHelper.js"></script>
-    <script src="js/volume.js"></script>
+    <script type="text/babel" src="react/slider.jsx"></script>
+    <script type="text/babel" src="react/render.js"></script>
     <script src="js/buttons/libExpCol.js"></script>
     <script src="js/listeners.js"></script>
     <script src="js/resize.js"></script>

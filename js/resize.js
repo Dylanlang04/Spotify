@@ -1,4 +1,7 @@
 function updateScreenPosition() {
-    const width = last.getBoundingClientRect().width
-    fullscreen.style.right = `${width + 20}px`
+    if (last != 0) {
+        const width = last.getBoundingClientRect().width
+        fullscreen.style.right = `${width + 20}px`
+    }
+    
 }
