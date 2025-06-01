@@ -62,3 +62,7 @@ const friendView = document.getElementById("friendView")
 //device
 const devicebtn = document.getElementById("device")
 const deviceView = document.getElementById("deviceView")
+
+
+//play
+const play_btn = document.getElementById("play_btn")
