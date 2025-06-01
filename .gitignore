@@ -1,2 +1,5 @@
 node_modules
 package-lock.json
+/backend/.env
+/backend/node_modules
+/backend/package-lock.json
