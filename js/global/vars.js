@@ -66,3 +66,9 @@ const deviceView = document.getElementById("deviceView")
 
 //play
 const play_btn = document.getElementById("play_btn")
+
+//playAudio
+const player = document.getElementById("playAudio")
+
+// liked
+const liked_pl = document.getElementById("liked")

@@ -11,7 +11,8 @@ function loadListeners() {
     queue.addEventListener("click", () => switchView(queueView, "queueView"))
     friend_act.addEventListener("click", () => switchView(friendView, "friendView"))
     devicebtn.addEventListener("click", () => switchView(deviceView, "deviceView"))
-    play_btn.addEventListener('click', loadUsers);
+    play_btn.addEventListener("click", toggleAudio)
+    liked_pl.addEventListener("click", likedPl)
     window.addEventListener("resize", updateScreenPosition)
     
 }
