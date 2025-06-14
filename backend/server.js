@@ -25,6 +25,7 @@ async function generateSignedUrl(key) {
   const command = new GetObjectCommand({
     Bucket: 'spotifymusic',
     Key: key,
+    
   })
 
   const signedUrl = await getSignedUrl(s3Client, command, { expiresIn: 500 });
