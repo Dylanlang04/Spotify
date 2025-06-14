@@ -1,5 +1,5 @@
 {
-  "name": "spotify",
+  "name": "Dylans' Spotify App",
   "version": "1.0.0",
   "description": "The goal of this assignment is to COMPLETELY rebuild spotifys desktop app over the summer of 2025",
   "homepage": "https://github.com/Dylanlang04/Spotify#readme",
@@ -19,6 +19,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "electron": "^36.1.0"
+    "electron": "^36.1.0",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "electron-rebuild": "^3.2.9"
   }
 }

@@ -13,6 +13,8 @@ function loadListeners() {
     devicebtn.addEventListener("click", () => switchView(deviceView, "deviceView"))
     play_btn.addEventListener("click", toggleAudio)
     liked_pl.addEventListener("click", likedPl)
+    fwd_btn.addEventListener("click", fetchPlaylists)
+    bck_btn.addEventListener("click", createPlaylist)
     window.addEventListener("resize", updateScreenPosition)
     
 }

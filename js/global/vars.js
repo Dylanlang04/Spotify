@@ -72,3 +72,7 @@ const player = document.getElementById("playAudio")
 
 // liked
 const liked_pl = document.getElementById("liked")
+
+//audio controls
+const fwd_btn = document.getElementById("fwd_btn")
+const bck_btn = document.getElementById("bck_btn")

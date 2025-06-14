@@ -21,7 +21,3 @@ function switchView(atr, style) {
     
 
 }
-function hideView(atr, stlye) { //no real use, more just a helper function
-    atr.classList.add("hidden")
-    atr.classList.remove(style)
-}
