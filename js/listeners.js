@@ -1,5 +1,6 @@
 
 
+
 function loadListeners() {
     home.addEventListener("click", homePage)
     lib.addEventListener("click", expandCol)
