@@ -6,15 +6,11 @@
     bottom: 60px;
     border-radius: 15px;
     color: white;
-    width: 50px;
+    width: 62px;
     
 }
 
-#library-cont button {
-    border-radius: 50%;
-    width: 30px;
-    height:30px;
-}
+
 #wrap {
     margin-left: 5px;
     margin-top: 60px;
@@ -22,12 +18,41 @@
     
 }
 #pl {
+    position: absolute;
+    top: 125px;
+    bottom: 0px;
+    left: 0px;
+    right: 62px;
+    width: 100%;
     overflow-y: auto;
     overflow-x: hidden;
-    height:calc(100vh - 210px);
+
+    
 }
-.playlists{
+.playlist {
+    margin-top: 10px;
+    margin-left: 6px;
+    color: white;
+    z-index: 3;
+    height: 54px;
+    width: 54px;
+    border-radius: 8px;
+    background-color: black;
+    border-color: transparent;
+   
+} 
+.playlist button {
+    
+    
+
 }
 .hidden {
     display: none;
+}
+#expand_lib, #create_pl {
+    background-color: transparent;
+    border-color: transparent;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
 }

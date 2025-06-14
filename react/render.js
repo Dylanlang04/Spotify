@@ -1,0 +1,1 @@
+ReactDOM.createRoot(document.getElementById('volume_slider')).render(<VolSlider />);

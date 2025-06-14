@@ -7,6 +7,7 @@
     color:white;
     width:22%;
     
+    
 }
 
 #library-cont.expand button {
@@ -22,19 +23,46 @@
     
 }
 #pl.expand {
+    position: absolute;
+    top: 175px;
+    bottom: 60px;
+    right:0px;
+    left:0px;
+    width: 100%;
     overflow-y: auto;
     overflow-x: hidden;
-    height:calc(100vh - 210px);
-}
-.playlists.expand {
-
+    height:calc(100vh - 235px);
 }
 
-#expand.expand {
+
+#expandbtn.expand {
     position: absolute;
     right: 10px;
-    background-color: black;
+    background-color: transparent;
+
 }
+#expandbtn svg {
+    stroke: white;
+}
+#expandbtn:hover svg {
+    stroke:#f88379 !important;
+    
+}
+#pl_search svg {
+    color: white;
+    fill: white;
+    stroke:white;
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;  
+}
+#pl_search:hover svg{
+    color:#f88379;
+    stroke:#f88379;
+    fill:#f88379;
+    
+}
+
 #create_pl.expand {
     position: absolute;
     right: 50px;
@@ -73,7 +101,7 @@
 
 #library-cont #pl_filters #back {
     color:white;
-    background-color: grey;
+   
     height: 30px;
     border-radius: 50%;
     width:30px;
@@ -83,7 +111,7 @@
 }
 #library-cont #pl_filters #playlist_filt {
     color:white;
-    background-color: grey;
+    
     height: 30px;
     border-radius: 15px;
     width:auto;
@@ -93,7 +121,7 @@
 }
 #library-cont #pl_filters #albums_filt {
     color:white;
-    background-color: grey;
+    
     height: 30px;
     border-radius: 15px;
     width:auto;
@@ -104,15 +132,18 @@
 
 
 #library-cont.expand #search_filt {
-    margin-top: 10px;
+    margin-top: 20px;
     display:flex;
-    justify-content: space-between;
-    position: relative;
+    width:100%;
+    align-items: center;
+    position: absolute;
 }
 #library-cont #search_filt #pl_search {
     color:white;
     background-color:transparent;
-    margin-left: 15px;
+    position: absolute;
+    
+    left: 15px;
     
     height: 30px;
     border-radius: 50%;
@@ -123,10 +154,17 @@
     background-color: grey;
     font-weight: bold;
 }
+#sortmethod {
+    text-align: right;
+    position: absolute;
+    right: 45px;
+}
 #library-cont.expand #search_filt #pl_filter {
     color:white;
+    position: absolute;
     background-color: transparent;
-    width: auto !important;
+    display: flex;
+    right: 15px;
     border-radius: 0%;
     
 }
@@ -135,12 +173,43 @@
     font-weight: bold;
 }
 
+#library-cont.expand #search_filt #pl_filter svg{
+    fill: white;
+    stroke: white;
+    color: white;
+    width: 20px;
+    flex-shrink: 0;  
+    
+}
+#library-cont #search_filt #pl_filter:hover svg{
+    color:#f88379;
+    
+    fill: #f88379;
+    stroke:#f88379;
+}
 
 
-
-
-
-
+#pl.expand .playlist {
+    margin-top: 10px;
+    margin-left: 6px;
+    color: white;
+    z-index: 3;
+    height: 54px;
+    width: 98%;
+    border-radius: 8px;
+    background-color: black;
+    border-color: transparent;
+   
+} 
+#wrap button, #search_filt button {
+    width: 50%;
+    background-color: transparent;
+    border-color: transparent;
+}
+#pl_filters button {
+    border-color: transparent;
+    background-color: dimgray;
+}
 
 #fullscreen1.expand {
     position: absolute;

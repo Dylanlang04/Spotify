@@ -2,11 +2,14 @@
 
 
 //volume
-const volume = document.getElementById("volumeSlider")
+
 const home = document.getElementById("home_btn")
 
 //volume.js
 const vol_icon = document.getElementsByClassName("volume")
+const vol_btn = document.getElementById("vol_btn")
+var prev_vol = 50;
+var vol = 50;
 
 //home
 const page = document.getElementById("fullscreen1")
@@ -19,7 +22,7 @@ const pl = document.getElementById("pl")
 const lib = document.getElementById("expand_lib")
 const wrap = document.getElementById("wrap")
 const fullscreen = document.getElementById("fullscreen1")
-const expand = document.getElementById("expand")
+const expandbtn = document.getElementById("expandbtn")
 const your_lib = document.getElementById("your_lib")
 const expand_lib = document.getElementById("expand_lib")
 
@@ -59,3 +62,13 @@ const friendView = document.getElementById("friendView")
 //device
 const devicebtn = document.getElementById("device")
 const deviceView = document.getElementById("deviceView")
+
+
+//play
+const play_btn = document.getElementById("play_btn")
+
+//playAudio
+const player = document.getElementById("playAudio")
+
+// liked
+const liked_pl = document.getElementById("liked")
