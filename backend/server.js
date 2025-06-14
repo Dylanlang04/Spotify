@@ -12,10 +12,12 @@ app.use(express.json())
 
 const s3Client = new S3Client({
   region: 'auto',
+
   endpoint: process.end.ENDPOINT,
   credentials: {
     accessKeyId: process.env.ACCESSKEYID,
     secretAccessKey: process.env.SECRETACCESSKEY,
+
   },
 })
 
@@ -29,13 +31,17 @@ async function generateSignedUrl(key) {
 
   return signedUrl;
 }
-app.get('/api/song/:songKey', async (req, res) => {
-  const songKey = req.params.songKey
+
+app.get('/api/song/:songId', async (req, res) => {
   try {
-    const signedUrl = await generateSignedUrl(songKey)
-    res.json({ url: signedUrl })
-  } catch (error) {
-    console.error('Failed to generate signed URL:', error)
+    const songId = req.params.songId
+    const key = `spotifymusic/${songId}`
+
+    const url = await generateSignedUrl(key)
+    res.json({ url })
+  } catch (err) {
+    console.error(err)
+
     res.status(500).json({ error: 'Failed to generate signed URL' })
   }
 })
