@@ -1,19 +1,52 @@
-const { Slider, ThemeProvider, createTheme } = MaterialUI;
-const { useState, useEffect } = React;
+const { Slider, ThemeProvider, createTheme } = MaterialUI
+const { useState, useEffect } = React
 
 
 const ProgressSlider = () => {
-    const [volume] = useState(70)
+    const [duration, setDuration] = useState(0)
+    const [progress, setProgress] = useState(0)
+
+    useEffect(() => {
+        const player = document.getElementById("playAudio")
+        if (!player) return
+
+        const handleLoadedMetadata = () => {
+            setDuration(player.duration)
+        }
+        const handleTimeUpdate = () => {
+            setProgress(player.currentTime)
+        }
+        player.addEventListener('loadedmetadata', handleLoadedMetadata)
+        player.addEventListener('timeupdate', handleTimeUpdate)
+        
+        return () => {
+            player.removeEventListener('loadedmetadata', handleLoadedMetadata)
+            player.removeEventListener('timeupdate', handleTimeUpdate)
+        }
+    
+    },[])
+
+    const handleSliderChange = (_, newValue) => {
+        const player = document.getElementById("playAudio")
+        if (player) {
+            player.currentTime = newValue
+            setProgress(newValue)
+            
+        }
+        
+    }
 
   return (
     
       
         <Slider
           size="small"
-          value={volume}
-          defaultValue={70}
+          value={progress}
+          min={0}
+          max={duration || 1}
+          onChange={handleSliderChange}
             sx={{
-                width: '25%',
+                width: 'clamp(210px, calc((100vw - 810px) * 0.38 + 210px), 700px)',
                 
                 '& .MuiSlider-thumb': {
                     color: 'white',

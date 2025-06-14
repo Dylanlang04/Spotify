@@ -31,7 +31,7 @@ const VolSlider = () => {
           defaultValue={70}
           onChange={handleChange}
             sx={{
-                width: '5vw',
+                width: 'clamp(20px, calc((100vw - 810px) * 0.25 + 20px), 90px)',
                 
                 '& .MuiSlider-thumb': {
                     color: 'white',
