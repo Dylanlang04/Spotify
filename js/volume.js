@@ -1,6 +1,7 @@
 
 function setVolumeJS(v) {
     vol = v
+    player.volume = vol / 100
 }
 
 function checkVol() {

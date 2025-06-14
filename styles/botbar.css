@@ -1,12 +1,20 @@
-
-#player {
+#audio_controls {
     position: absolute;
-    bottom:17px;
+    height: 55px;
+    bottom:0px;
     left:0px;
     width: 100%;
+}
+#player {
+    
     display: flex;
     justify-content: center;
 
+}
+#progress_slider {
+    display: flex;
+    justify-content: center;
+    margin-top: -5px;
 }
 #player button {
     height:30px;
@@ -38,7 +46,9 @@
     height: 25px;
 }
 
-
+#test1 {
+    width: 100%;
+}
 #misc {
     position: absolute;
     bottom: 17px;
@@ -61,8 +71,7 @@
 }   
 
 #volume_slider {
-    position: relative;
-    top: 5px; 
+
 }
 
 

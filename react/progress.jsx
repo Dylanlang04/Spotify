@@ -1,26 +1,9 @@
-
-
 const { Slider, ThemeProvider, createTheme } = MaterialUI;
 const { useState, useEffect } = React;
 
 
-const VolSlider = () => {
-    const [volume, setVolume] = useState(70)
-
-    const handleChange = (_, newValue) => {
-        setVolume(newValue)
-        setVolumeJS(newValue)
-        checkVol()
-    }
-    useEffect(() => {
-        const handleExternalUpdate = (e) => {
-            const newValue = e.detail
-            setVolume(newValue)
-            checkVol()
-        }
-    window.addEventListener('update-slider', handleExternalUpdate)
-    return () => window.removeEventListener('update-slider', handleExternalUpdate);
-  }, []);
+const ProgressSlider = () => {
+    const [volume] = useState(70)
 
   return (
     
@@ -29,9 +12,8 @@ const VolSlider = () => {
           size="small"
           value={volume}
           defaultValue={70}
-          onChange={handleChange}
             sx={{
-                width: '5vw',
+                width: '25%',
                 
                 '& .MuiSlider-thumb': {
                     color: 'white',
