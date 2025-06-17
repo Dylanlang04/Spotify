@@ -11,6 +11,9 @@ app.use(cors())
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '../')))
 
+const users = [
+  { email: 'user@example.com', password: 'password123' },
+]
 
 const s3Client = new S3Client({
   region: 'auto',
@@ -36,7 +39,25 @@ async function generateSignedUrl(key) {
 }
 
 app.get('/login_page', (req, res) => {
+  res.sendFile(path.join(__dirname, '../', 'login.html'))
+})
+
+
+app.get('/spotify', (req, res) => {
   res.sendFile(path.join(__dirname, '../', 'index.html'))
+})
+
+app.post('/login', (req, res) => {
+  const { email, password } = req.body
+  const user = users.find(u => u.email === email)
+
+  if (!user) {
+    return res.status(401).json({ success: false, message: 'User not found' })
+  }
+  if (user.password !== password) {
+    return res.status(401).json({ success: false, message: 'Incorrect password' })
+  }
+  return res.json({ success: true, token: 'fake-jwt-token' })
 })
 
 app.get('/api/song/:songId', async (req, res) => {

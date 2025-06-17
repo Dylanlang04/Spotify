@@ -1,9 +1,17 @@
-const {app, BrowserWindow, ipcMain} = require('electron')
-const path = require('node:path')
-const sqlite3 = require('sqlite3').verbose()
+import { app, BrowserWindow, ipcMain } from 'electron';
+import path from 'node:path';
+
+import { fileURLToPath } from 'url';
+import sqlite3 from 'sqlite3';
+import Store from 'electron-store';
+const sqlite = sqlite3.verbose();
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const store = new Store();
 
 const dbPath = path.join(app.getPath('userData'), 'playlists.db')
-const db = new sqlite3.Database(dbPath)
+const db = new sqlite.Database(dbPath)
 app.setName("Dylans_Spotify_App")
 db.serialize(() => {
   db.run(`
@@ -49,6 +57,7 @@ ipcMain.handle('add-playlist', async (event, { name, description }) => {
   })
 })
 
+
 const createWindow = () => {
 	const win = new BrowserWindow({
 		width: 1280,
@@ -61,8 +70,15 @@ const createWindow = () => {
 			nodeIntegration: false
 		}
 	})
-	win.loadURL('http://localhost:3000/login_page')
+  const token = store.get('authToken')
+  console.log(token)
+	if (token) {
+    win.loadURL('http://localhost:3000/spotify.html');
+  } else {
+    win.loadURL('http://localhost:3000/login_page');
+  }
 }
+
 
 app.whenReady().then(() => {
 	createWindow()
