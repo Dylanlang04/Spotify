@@ -1,7 +1,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
+    checkLogin()
     loadListeners()
-    homePage()
     loadPlaylists()
     loadSong()
 })

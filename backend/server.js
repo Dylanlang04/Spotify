@@ -2,12 +2,14 @@ require('dotenv').config();
 const express = require('express')
 const cors = require('cors')
 const { Client } = require('pg')
+const path = require('path')
 const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3')
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner')
 
 const app = express()
 app.use(cors())
 app.use(express.json())
+app.use(express.static(path.join(__dirname, '../')))
 
 
 const s3Client = new S3Client({
@@ -32,6 +34,10 @@ async function generateSignedUrl(key) {
 
   return signedUrl;
 }
+
+app.get('/login_page', (req, res) => {
+  res.sendFile(path.join(__dirname, '../', 'index.html'))
+})
 
 app.get('/api/song/:songId', async (req, res) => {
   try {

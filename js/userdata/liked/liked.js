@@ -1,4 +1,5 @@
 function likedPl() {
+    console.log("test")
     page.innerHTML = ""
     page.innerHTML += `<div id="liked_playlist">
         <div class="liked-scroll">

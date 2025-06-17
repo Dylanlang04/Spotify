@@ -61,7 +61,7 @@ const createWindow = () => {
 			nodeIntegration: false
 		}
 	})
-	win.loadFile('index.html')
+	win.loadURL('http://localhost:3000/login_page')
 }
 
 app.whenReady().then(() => {

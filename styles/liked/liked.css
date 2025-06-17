@@ -1,6 +1,9 @@
 #liked:hover {
     cursor: pointer;
 }
+#liked {
+    background-color: red;
+}
 
 .liked_playlist {
     border-radius: 15px;
