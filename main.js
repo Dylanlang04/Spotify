@@ -1,10 +1,9 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
-import path from 'node:path';
-
-import { fileURLToPath } from 'url';
-import sqlite3 from 'sqlite3';
-import Store from 'electron-store';
-const sqlite = sqlite3.verbose();
+import { app, BrowserWindow, ipcMain } from 'electron'
+import path from 'node:path'
+import { fileURLToPath } from 'url'
+import sqlite3 from 'sqlite3'
+import Store from 'electron-store'
+const sqlite = sqlite3.verbose()
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -73,9 +72,9 @@ const createWindow = () => {
   const token = store.get('authToken')
   console.log(token)
 	if (token) {
-    win.loadURL('http://localhost:3000/spotify.html');
+    win.loadURL('http://localhost:3000/spotify.html')
   } else {
-    win.loadURL('http://localhost:3000/login_page');
+    win.loadURL('http://localhost:3000/login_page')
   }
 }
 
