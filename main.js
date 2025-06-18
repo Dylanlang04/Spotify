@@ -45,6 +45,19 @@ ipcMain.handle('get-playlists', async () => {
   })
 })
 
+ipcMain.on('save-token', async (event, token) => {
+  store.set('authToken', token)
+})
+
+ipcMain.on('delete-token', async () => {
+  store.delete('authToken')
+})
+
+ipcMain.handle('get-token', async () =>{
+  return store.get('authToken')
+}) 
+
+
 ipcMain.handle('add-playlist', async (event, { name, description }) => {
   return new Promise((resolve, reject) => {
     db.run(`INSERT INTO playlists (name, description) VALUES (?, ?)`,
@@ -57,7 +70,7 @@ ipcMain.handle('add-playlist', async (event, { name, description }) => {
 })
 
 
-const createWindow = () => {
+const createWindow = async () => {
 	const win = new BrowserWindow({
 		width: 1280,
 		height: 720,
@@ -70,9 +83,14 @@ const createWindow = () => {
 		}
 	})
   const token = store.get('authToken')
-  console.log(token)
-	if (token) {
-    win.loadURL('http://localhost:3000/spotify.html')
+  const res = await fetch('http://localhost:3000/protected', {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    //serve an initial html page that is a loading screen. TO DO
+	if (res.status === 200) {
+    win.loadURL('http://localhost:3000/spotify')
   } else {
     win.loadURL('http://localhost:3000/login_page')
   }

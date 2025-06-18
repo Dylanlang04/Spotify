@@ -5,15 +5,16 @@ const { Client } = require('pg')
 const path = require('path')
 const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3')
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner')
+const jwt = require('jsonwebtoken')
+
+const jwt_secret = process.env.JWTSECRET
 
 const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '../')))
 
-const users = [
-  { email: 'user@example.com', password: 'password123' },
-]
+
 
 const s3Client = new S3Client({
   region: 'auto',
@@ -38,6 +39,23 @@ async function generateSignedUrl(key) {
   return signedUrl;
 }
 
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization']
+  
+  const token = authHeader?.split(' ')[1]
+  if (!token) return res.sendStatus(401)
+
+  jwt.verify(token, jwt_secret, (err, user) => {
+    if (err) return res.sendStatus(403)
+    req.user = user
+    next()
+  })
+}
+
+app.get('/protected', authenticateToken, (req, res) => {
+  res.json({ message: `Hello ${req.user.email}` })
+})
+
 app.get('/login_page', (req, res) => {
   res.sendFile(path.join(__dirname, '../', 'login.html'))
 })
@@ -47,17 +65,33 @@ app.get('/spotify', (req, res) => {
   res.sendFile(path.join(__dirname, '../', 'index.html'))
 })
 
-app.post('/login', (req, res) => {
+app.post('/login', async (req, res) => {
   const { email, password } = req.body
-  const user = users.find(u => u.email === email)
-
+  const client = new Client({
+    user: process.env.PGUSER,
+    password: process.env.PGPASSWORD,
+    database: process.env.PGDATABASE,
+  })
+  await client.connect()
+  const result = await client.query(
+    'SELECT * FROM users WHERE email = $1',
+    [email]
+  )
+  await client.end()
+  if (result.rows.length === 0) {
+    return res.status(401).json({ error: 'Invalid email or password' })
+  }
+  const user = result.rows[0]
   if (!user) {
     return res.status(401).json({ success: false, message: 'User not found' })
   }
-  if (user.password !== password) {
+  if (user.password_hash !== password) {
     return res.status(401).json({ success: false, message: 'Incorrect password' })
   }
-  return res.json({ success: true, token: 'fake-jwt-token' })
+  const jwt_token = jwt.sign({userId: user.id, email: user.email}, jwt_secret, {
+    expiresIn: '1m'
+  })
+  return res.json({ success: true, token: jwt_token })
 })
 
 app.get('/api/song/:songId', async (req, res) => {

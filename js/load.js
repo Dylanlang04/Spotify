@@ -1,6 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-    checkLogin()
+    checkToken()
     loadListeners()
     loadPlaylists()
     loadSong()

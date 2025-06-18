@@ -12,16 +12,24 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   const result = await response.json()
 
   if (result.success) {
-    localStorage.setItem('authToken', result.token)
+    window.electronAPI.saveToken(result.token)
     window.location.href = '/index.html'
-    //load index.html
     
   } else {
     alert('Login failed: ' + result.message)
   }
 })
 
+async function checkToken() {
+    const token = await window.electronAPI.getToken()
 
-function checkLogin() {
-    loginPage()
+    const res = await fetch('http://localhost:3000/protected', {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    if (res.status === 403) {
+        window.location.href = '/login.html'
+    }
 }
+
