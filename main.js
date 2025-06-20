@@ -36,14 +36,7 @@ db.serialize(() => {
 })
 console.log('Database path:', dbPath);
 
-ipcMain.handle('get-playlists', async () => {
-  return new Promise((resolve, reject) => {
-    db.all(`SELECT * FROM playlists`, [], (err, rows) => {
-      if (err) reject(err)
-      else resolve(rows)
-    })
-  })
-})
+
 
 ipcMain.on('save-token', async (event, token) => {
   store.set('authToken', token)
@@ -56,7 +49,53 @@ ipcMain.on('delete-token', async () => {
 ipcMain.handle('get-token', async () =>{
   return store.get('authToken')
 }) 
+ipcMain.on('login-db', async ()=> {
+  const token = store.get('authToken')
+  const response = await fetch(`http://localhost:3000/api/user/data/${token}`)
+  const result = await response.json()
+  return result
 
+})
+ipcMain.on('logout-db', async ()=> {
+  db.run(`TRUNCATE TABLE playlists`)
+  db.run(`TRUNCATE TABLE playlist_tracks`)
+})
+ipcMain.on('addSong-db', async ()=> {
+
+})
+ipcMain.on('deleteSong-db', async ()=> {
+
+})
+ipcMain.on('deletePlaylist-db', async ()=> {
+
+})
+ipcMain.on('sync-db', async () => {
+  
+  //DESIGN
+  //ON LOGIN FETCH DB FROM SERVER | dif func
+  //ON LOGOUT DROP DB | dif func
+  //ON LAUNCH ADD UNSYNCED DATA FROM SERVER, IGNORE NON NEW ENTRIES. | this func
+  //WHEN USER ADDS SONG ADD TO CLIENT SIDE DB AND TO SERVER | dif func
+  //DELETE SONG
+  //DELETE PLAYLIST
+
+
+
+  const token = store.get('authToken')
+  const response = await fetch(`http://localhost:3000/api/user/data/${token}`)
+  const result = await response.json()
+  return result
+})
+
+
+ipcMain.handle('get-playlists', async () => {
+  return new Promise((resolve, reject) => {
+    db.all(`SELECT * FROM playlists`, [], (err, rows) => {
+      if (err) reject(err)
+      else resolve(rows)
+    })
+  })
+})
 
 ipcMain.handle('add-playlist', async (event, { name, description }) => {
   return new Promise((resolve, reject) => {

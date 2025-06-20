@@ -14,14 +14,33 @@
     <div id="login_background">
         <div id="login_panel">
             <div id="form-wrapper">
+                <div id="logoWrap">
+                    <div id="loginLogo"></div>
+                </div>
+                <div id="loginTextWrap">
+                    <div id="text_wrap">
+                        <div>Millions of songs.</div>
+                        <div>Free on Spotfiy</div>
+                    </div>
+                    
+                </div>
+                
                 <form id="loginForm">
-                    <label for="email">Email:</label><br />
-                    <input type="email" id="email" name="email" required /><br /><br />
+                    
+                    <input type="email" id="email" name="email" placeholder="example@gmail.com" required /><br /><br />
+                    <input type="password" id="password" name="password" placeholder="Password" required /><br /><br />
+                    <div id="forgot_wrap">
+                        <div>Forgot password?</div>
 
-                    <label for="password">Password:</label><br />
-                    <input type="password" id="password" name="password" required /><br /><br />
-
-                    <button type="submit">Login</button>
+                    </div>
+                    <div id="submit">
+                        <button type="submit">Login</button>
+                    </div>
+                    <div id="reg_wrap">
+                        <div id="reg_text">New to spotify? </div>
+                        <div id="register"><a href="register.html">Register now.</a></div>
+                    </div>
+                    
                 </form>
             </div>
         </div>

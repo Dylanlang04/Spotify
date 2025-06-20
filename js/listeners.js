@@ -14,7 +14,9 @@ function loadListeners() {
     play_btn.addEventListener("click", toggleAudio)
     liked_pl.addEventListener("click", likedPl)
     fwd_btn.addEventListener("click", fetchPlaylists)
-    bck_btn.addEventListener("click", createPlaylist)
+    bck_btn.addEventListener("click", serverplaylists)
+    create_pl.addEventListener("click", createPlaylistServer)
+    shuffle.addEventListener("click", logout)
     window.addEventListener("resize", updateScreenPosition)
     
 }

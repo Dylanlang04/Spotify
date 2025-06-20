@@ -14,22 +14,13 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   if (result.success) {
     window.electronAPI.saveToken(result.token)
     window.location.href = '/index.html'
+    const playlists = window.electronAPI.syncDb()
+    console.log(playlists)
     
   } else {
     alert('Login failed: ' + result.message)
   }
 })
 
-async function checkToken() {
-    const token = await window.electronAPI.getToken()
 
-    const res = await fetch('http://localhost:3000/protected', {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    })
-    if (res.status === 403) {
-        window.location.href = '/login.html'
-    }
-}
 

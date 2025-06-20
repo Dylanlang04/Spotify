@@ -1,0 +1,95 @@
+#login_background {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+
+#form-wrapper {
+    width: 300px;
+}
+#logoWrap {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+#loginLogo {
+    width: 50px;
+    height: 50px;
+    background-color: green;
+}
+#loginTextWrap {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+#loginTextWrap div {
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+
+#loginForm{
+    margin-top: 15px;
+}
+#loginForm input {
+    border-radius: 5px;
+    width: 290px;
+    border-color: transparent;
+}
+#forgot_wrap {
+    width:100%;
+    display: flex;
+    justify-content: right;
+}
+#forgot_wrap {
+    height: 20px;
+    margin-top: -10px;
+}
+#submit {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#submit button {
+    border-radius: 10px;
+    border-color: transparent;
+    height: 30px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    width: 290px;
+}
+#reg_wrap {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 5px;
+
+}
+
+
+#register {
+    margin-left: 5px;
+}
+#register a:-webkit-any-link {
+    color:inherit;;
+    cursor: pointer;
+    text-decoration: none;
+}
+#login_panel {
+    padding: 20px;
+    border-radius: 15px;
+    background-color: red;
+}
+
