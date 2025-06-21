@@ -14,7 +14,10 @@ function loadListeners() {
     play_btn.addEventListener("click", toggleAudio)
     liked_pl.addEventListener("click", likedPl)
     fwd_btn.addEventListener("click", fetchPlaylists)
-    bck_btn.addEventListener("click", serverplaylists)
+    bck_btn.addEventListener("click", () => {
+        
+        window.electronAPI.deletePlaylist(2)
+    })   
     create_pl.addEventListener("click", createPlaylistServer)
     shuffle.addEventListener("click", logout)
     window.addEventListener("resize", updateScreenPosition)

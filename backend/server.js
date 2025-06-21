@@ -127,10 +127,23 @@ app.post('/register', async (req, res) => {
   
 })
 
-app.get('/api/user/data/:token', async (req, res) => {
-
+app.get('/api/user/token/:token', async (req, res)=> {
   const token = req.params.token
+  
   jwt.verify(token, jwt_secret, (err, decoded) => {
+    
+    if (err) {
+      return res.status(404).json({message: "error"})
+    } else {
+      return res.json({userId: decoded.userId})
+    }
+  } )
+})
+
+app.get('/api/user/data/:token', async (req, res) => {
+  
+  const token = req.params.token
+  jwt.verify(token, jwt_secret, async (err, decoded) => {
     if (err) {
       res.status(401).json({message: "error"})
     } else {
@@ -139,9 +152,13 @@ app.get('/api/user/data/:token', async (req, res) => {
         password: process.env.PGPASSWORD,
         database: process.env.PGDATABASE
       })
-      const playlists = client.query(`SELECT * FROM playlists WHERE userid = $1`, [decoded.userId])
-    
-      res.status(200).json({playlists})
+      
+      client.connect()
+      const playlists = await client.query(`SELECT * FROM playlists WHERE userid = $1`, [decoded.userId])
+      client.end()
+      
+      
+      res.status(200).json({playlists: playlists, userId: decoded.userId})
     }
   })
   

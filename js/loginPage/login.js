@@ -13,6 +13,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
   if (result.success) {
     window.electronAPI.saveToken(result.token)
+    window.electronAPI.createDb()
     window.location.href = '/index.html'
     const playlists = window.electronAPI.syncDb()
     console.log(playlists)

@@ -2,6 +2,7 @@ import { app, BrowserWindow, ipcMain } from 'electron'
 import path from 'node:path'
 import { fileURLToPath } from 'url'
 import sqlite3 from 'sqlite3'
+import fs from 'fs';
 import Store from 'electron-store'
 const sqlite = sqlite3.verbose()
 
@@ -9,34 +10,60 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const store = new Store();
 
-const dbPath = path.join(app.getPath('userData'), 'playlists.db')
-const db = new sqlite.Database(dbPath)
-app.setName("Dylans_Spotify_App")
-db.serialize(() => {
+let db = null
+
+
+
+//DATABASE MANAGEMENT
+async function loadDatabase(userId) {
+  const dbPath = path.join(app.getPath('userData'), `user_${userId}.db`)
+  db = new sqlite.Database(dbPath, (err) => {
+    if (err) {
+      console.error(`Error opening DB for user ${userId}:`, err)
+    } else {
+      console.log(`Loaded DB for user ${userId}:`, dbPath)
+    }
+  })
+
+
+}
+
+async function addPlaylist(playlist) {
   db.run(`
-    CREATE TABLE IF NOT EXISTS playlists (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT NOT NULL,
-      description TEXT,
-      created_at TEXT DEFAULT CURRENT_TIMESTAMP
-    )
-  `)
-
-  db.run(`
-    CREATE TABLE IF NOT EXISTS playlist_tracks (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      playlist_id INTEGER,
-      track_id TEXT,
-      track_name TEXT,
-      artist_name TEXT,
-      duration_ms INTEGER,
-      FOREIGN KEY (playlist_id) REFERENCES playlists(id)
-    )
-  `)
-})
-console.log('Database path:', dbPath);
-
-
+    INSERT INTO playlists (
+      playlist_id,
+      name,
+      description,
+      created_at,
+      updated_at,
+      cover_img_url,
+      is_public,
+      track_count,
+      duration_ms,
+      genre_tag,
+      favourite,
+      time_played,
+      last_played_at,
+      playlist_name
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT(playlist_id) DO UPDATE SET
+      name = excluded.name,
+      description = excluded.description,
+      updated_at = excluded.updated_at,
+      cover_img_url = excluded.cover_img_url,
+      is_public = excluded.is_public,
+      track_count = excluded.track_count,
+      duration_ms = excluded.duration_ms,
+      genre_tag = excluded.genre_tag,
+      favourite = excluded.favourite,
+      time_played = excluded.time_played,
+      last_played_at = excluded.last_played_at,
+      playlist_name = excluded.playlist_name;
+  `, [playlist.playlist_id, playlist.name, playlist.description, playlist.created_at, playlist.updated_at, playlist.cover_image_rul, playlist.is_public, playlist.track_count, playlist.duration_ms, playlist.genre_tag, playlist.favourite, playlist.times_played, playlist.last_played_at, playlist.playlist_name])
+}
+async function deletePlaylist(playlistId) {
+   db.run("DELETE FROM playlists WHERE playlist_id = ?", [playlistId]) 
+}
 
 ipcMain.on('save-token', async (event, token) => {
   store.set('authToken', token)
@@ -49,24 +76,97 @@ ipcMain.on('delete-token', async () => {
 ipcMain.handle('get-token', async () =>{
   return store.get('authToken')
 }) 
+
+ipcMain.on('create-db', async () => {
+  const token = store.get('authToken')
+  const response = await fetch(`http://localhost:3000/api/user/token/${token}`)
+  const resJson = await response.json()
+  const userId = resJson.userId
+  
+   
+  const dbPath = path.join(app.getPath('userData'), `user_${userId}.db`)
+  const dbExists = fs.existsSync(dbPath);
+  if (!dbExists) {
+    db = new sqlite.Database(dbPath)
+    db.serialize(() => {
+      db.run(`
+        CREATE TABLE IF NOT EXISTS playlists (
+          playlist_id INTEGER PRIMARY KEY AUTOINCREMENT,
+          name TEXT NOT NULL,
+          description TEXT,
+          created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+          updated_at TEXT DEFAULT CURRENT_TIMESTAMP,
+          cover_img_url TEXT,
+          is_public BOOLEAN DEFAULT FALSE,
+          track_count INTEGER DEFAULT 0,
+          duration_ms BIGINT DEFAULT 0,
+          genre_tag TEXT,
+          favourite BOOLEAN DEFAULT FALSE,
+          time_played INTEGER DEFAULT 0,
+          last_played_at TEXT,
+          playlist_name TEXT
+        )
+     `)
+
+      db.run(`
+        CREATE TABLE IF NOT EXISTS playlist_tracks (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          playlist_id INTEGER,
+          track_id TEXT,
+          track_name TEXT,
+          artist_name TEXT,
+          duration_ms INTEGER,
+          FOREIGN KEY (playlist_id) REFERENCES playlists(id)
+        )
+      `)
+      db.run(`
+        CREATE TRIGGER IF NOT EXISTS delete_playlist_tracks
+          AFTER DELETE ON playlists
+          FOR EACH ROW
+          BEGIN
+          DELETE FROM playlist_tracks WHERE playlist_id = OLD.playlist_id;
+          END;
+      `)
+    })
+    return true
+  } else {
+    await loadDatabase(userId)
+    return false
+  }
+})
+
+//Do i really need this? if im creating a db if it doesnt exist and loading the db if it already does?
+//i just retrieve the data from server if its an existing user on a new device
 ipcMain.on('login-db', async ()=> {
   const token = store.get('authToken')
+  
   const response = await fetch(`http://localhost:3000/api/user/data/${token}`)
   const result = await response.json()
+  store.set("userId", result.userId)
   return result
 
 })
 ipcMain.on('logout-db', async ()=> {
-  db.run(`TRUNCATE TABLE playlists`)
-  db.run(`TRUNCATE TABLE playlist_tracks`)
+  db.close((err) => {
+    if (err) {
+      console.log("error closing db")
+    } 
+  })
 })
-ipcMain.on('addSong-db', async ()=> {
+ipcMain.on('addSong-db', async (song)=> {
 
 })
-ipcMain.on('deleteSong-db', async ()=> {
+ipcMain.on('deleteSong-db', async (songId)=> {
 
 })
-ipcMain.on('deletePlaylist-db', async ()=> {
+ipcMain.on('add-playlist', async (playlist)=> {
+  addPlaylist(playlist)
+})
+ipcMain.on('deletePlaylist-db', async (_, playlistId) => {
+  
+  deletePlaylist(playlistId)
+  //send a delete request to server to delete playlist.
+  
 
 })
 ipcMain.on('sync-db', async () => {
@@ -80,11 +180,15 @@ ipcMain.on('sync-db', async () => {
   //DELETE PLAYLIST
 
 
-
+  
   const token = store.get('authToken')
   const response = await fetch(`http://localhost:3000/api/user/data/${token}`)
   const result = await response.json()
-  return result
+  
+  for (var i =0; i < result.playlists.rows.length; i++ ) {
+    addPlaylist(result.playlists.rows[i])
+  }
+  
 })
 
 
@@ -97,16 +201,18 @@ ipcMain.handle('get-playlists', async () => {
   })
 })
 
-ipcMain.handle('add-playlist', async (event, { name, description }) => {
-  return new Promise((resolve, reject) => {
-    db.run(`INSERT INTO playlists (name, description) VALUES (?, ?)`,
-      [name, description],
-      function (err) {
-        if (err) reject(err)
-        else resolve({ id: this.lastID })
-      })
-  })
-})
+
+
+
+
+
+
+
+
+
+
+
+/// CREATE WINDOW
 
 
 const createWindow = async () => {
@@ -129,8 +235,10 @@ const createWindow = async () => {
     })
     //serve an initial html page that is a loading screen. TO DO
 	if (res.status === 200) {
+    
     win.loadURL('http://localhost:3000/spotify')
   } else {
+    
     win.loadURL('http://localhost:3000/login_page')
   }
 }
