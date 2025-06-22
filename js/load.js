@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 async function checkToken() {
     const token = await window.electronAPI.getToken()
 
-    const res = await fetch('http://localhost:3000/protected', {
+    const res = await fetch('http://localhost:3000/api/account/protected', {
         headers: {
             'Authorization': `Bearer ${token}`
         }

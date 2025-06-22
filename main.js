@@ -27,6 +27,30 @@ async function loadDatabase(userId) {
 
 
 }
+async function syncDatabase() { // syncs with server. abstraction
+  const token = store.get('authToken')
+  const response = await fetch(`http://localhost:3000/api/user/data/${token}`)
+  const result = await response.json()
+  
+  for (var i =0; i < result.playlists.rows.length; i++ ) {
+    addPlaylist(result.playlists.rows[i])
+  }
+  
+
+}
+
+async function loadUserData() {
+  const userId = store.get('userId')
+  const dbPath = path.join(app.getPath('userData'), `user_${userId}.db`)
+  db = new sqlite.Database(dbPath, (err) => {
+    if (err) {
+      console.error(`Error opening DB for user ${userId}:`, err)
+    } else {
+      console.log(`Loaded DB for user ${userId}:`, dbPath)
+    }
+  })
+  syncDatabase()
+}
 
 async function addPlaylist(playlist) {
   db.run(`
@@ -67,6 +91,9 @@ async function deletePlaylist(playlistId) {
 
 ipcMain.on('save-token', async (event, token) => {
   store.set('authToken', token)
+  const response = await fetch(`http://localhost:3000/api/user/data/${token}`)
+  const result = await response.json()
+  store.set("userId", result.userId)
 })
 
 ipcMain.on('delete-token', async () => {
@@ -79,7 +106,7 @@ ipcMain.handle('get-token', async () =>{
 
 ipcMain.on('create-db', async () => {
   const token = store.get('authToken')
-  const response = await fetch(`http://localhost:3000/api/user/token/${token}`)
+  const response = await fetch(`http://localhost:3000/api/user/${token}`)
   const resJson = await response.json()
   const userId = resJson.userId
   
@@ -140,7 +167,7 @@ ipcMain.on('create-db', async () => {
 ipcMain.on('login-db', async ()=> {
   const token = store.get('authToken')
   
-  const response = await fetch(`http://localhost:3000/api/user/data/${token}`)
+  const response = await fetch(`http://localhost:3000/api/user/${token}`)
   const result = await response.json()
   store.set("userId", result.userId)
   return result
@@ -165,8 +192,12 @@ ipcMain.on('add-playlist', async (playlist)=> {
 ipcMain.on('deletePlaylist-db', async (_, playlistId) => {
   
   deletePlaylist(playlistId)
-  //send a delete request to server to delete playlist.
-  
+  const userId = store.get("userId")
+  const response = await fetch(`http://localhost:3000/api/playlist/delete/${playlistId}/${userId}`, {
+    method: 'DELETE'
+  })
+  const result = await response.json()
+  console.log(result.status)
 
 })
 ipcMain.on('sync-db', async () => {
@@ -178,17 +209,7 @@ ipcMain.on('sync-db', async () => {
   //WHEN USER ADDS SONG ADD TO CLIENT SIDE DB AND TO SERVER | dif func
   //DELETE SONG
   //DELETE PLAYLIST
-
-
-  
-  const token = store.get('authToken')
-  const response = await fetch(`http://localhost:3000/api/user/data/${token}`)
-  const result = await response.json()
-  
-  for (var i =0; i < result.playlists.rows.length; i++ ) {
-    addPlaylist(result.playlists.rows[i])
-  }
-  
+  syncDatabase()
 })
 
 
@@ -228,7 +249,7 @@ const createWindow = async () => {
 		}
 	})
   const token = store.get('authToken')
-  const res = await fetch('http://localhost:3000/protected', {
+  const res = await fetch('http://localhost:3000/api/account/protected', {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -236,10 +257,10 @@ const createWindow = async () => {
     //serve an initial html page that is a loading screen. TO DO
 	if (res.status === 200) {
     
-    win.loadURL('http://localhost:3000/spotify')
+    win.loadURL('http://localhost:3000/api/load/spotify')
   } else {
-    
-    win.loadURL('http://localhost:3000/login_page')
+    loadUserData()
+    win.loadURL('http://localhost:3000/api/load/login_page')
   }
 }
 

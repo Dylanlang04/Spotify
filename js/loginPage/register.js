@@ -13,14 +13,14 @@ const registerForm = document.getElementById("registerForm").addEventListener('s
     const password = document.getElementById("password").value
     console.log(username, email, phone, password)
     
-    const response = await fetch('http://localhost:3000/register', {
+    const response = await fetch('http://localhost:3000/api/account/register', {
         method: "POST",
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({username, email, phone, password})
     })
     const result = await response.json()
     if (response.status === 200) {
-        const response = await fetch('http://localhost:3000/login', {
+        const response = await fetch('http://localhost:3000/api/account/login', {
             method: "POST",
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({email, password})
