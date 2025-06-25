@@ -3,7 +3,7 @@ const router = express.Router()
 const { authenticateToken, generateSignedUrl } = require('../utils/utils')
 
 
-router.get('/api/song/:songId', async (req, res) => {
+router.get('/:songId', async (req, res) => {
   try {
     const songId = req.params.songId
     const url = await generateSignedUrl(songId)

@@ -256,10 +256,10 @@ const createWindow = async () => {
     })
     //serve an initial html page that is a loading screen. TO DO
 	if (res.status === 200) {
-    
+    loadUserData()
     win.loadURL('http://localhost:3000/api/load/spotify')
   } else {
-    loadUserData()
+    
     win.loadURL('http://localhost:3000/api/load/login_page')
   }
 }

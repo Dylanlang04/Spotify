@@ -6,6 +6,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   saveToken: (token) => ipcRenderer.send('save-token', token),
   getToken: (token) => ipcRenderer.invoke('get-token', token),
   deleteToken: () => ipcRenderer.send('delete-token'),
+  getUserId: () => ipcRenderer.send('get-userid'),
   loginDb: () => ipcRenderer.send('login-db'),
   logoutDb: () => ipcRenderer.send('logout-db'),
   addSong: (song) => ipcRenderer.send('addSong-db', song),

@@ -1,6 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const { authenticateToken, generateSignedUrl } = require('../utils/utils')
+const { Client } = require('pg')
+const jwt = require('jsonwebtoken')
+
+const jwt_secret = process.env.JWTSECRET
 
 router.post('/register', async (req, res) => {
   const {username, email, phone, password} = req.body
@@ -59,7 +63,7 @@ router.post('/login', async (req, res) => {
     return res.status(401).json({ success: false, message: 'Incorrect password' })
   }
   const jwt_token = jwt.sign({userId: user.id, email: user.email}, jwt_secret, {
-    expiresIn: '10m'
+    expiresIn: '10h'
   })
   return res.json({ success: true, token: jwt_token })
 })

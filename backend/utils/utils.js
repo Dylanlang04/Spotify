@@ -1,8 +1,17 @@
 const jwt = require('jsonwebtoken')
-const { GetObjectCommand } = require('@aws-sdk/client-s3')
+const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3')
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner')
 
 const jwt_secret = process.env.JWTSECRET
+
+const s3Client = new S3Client({
+  region: 'auto', 
+  credentials: {
+    accessKeyId: process.env.ACCESSKEYID,
+    secretAccessKey: process.env.SECRETACCESSKEY,
+  },
+});
+
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization']

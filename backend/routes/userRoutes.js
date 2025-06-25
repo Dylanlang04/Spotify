@@ -3,7 +3,9 @@ const router = express.Router()
 const { Client } = require('pg')
 const { authenticateToken, generateSignedUrl } = require('../utils/utils')
 const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3')
+const jwt = require('jsonwebtoken')
 
+const jwt_secret = process.env.JWTSECRET
 
 router.get('/:token', async (req, res)=> {
   const token = req.params.token
@@ -15,7 +17,7 @@ router.get('/:token', async (req, res)=> {
     } else {
       return res.json({userId: decoded.userId})
     }
-  } )
+  })
 })
 
 router.get('/data/:token', async (req, res) => {
