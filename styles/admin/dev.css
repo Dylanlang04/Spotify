@@ -1,0 +1,15 @@
+#songslist {
+    position: absolute;
+    top:0px;
+    left:50%;
+    right:0px;
+    bottom:0px;
+    overflow-y: auto;
+}
+
+#left {
+    width: 50%;
+    position: absolute;
+    left:0px;
+    top:0px;
+}

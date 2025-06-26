@@ -1,25 +1,61 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <link rel="stylesheet" type="text/css" href="./styles/admin/dev.css">
     </head>
     <body>
-        <button id="back">
+        
+        <div id="songslist">
+        </div>
+        
+        
+        <div id="left">
+            <button id="back">
 back
         </button>
+        
         <form id="upload">
             <div>
                 <label for="file">Choose file to upload</label>
-                <input type="file" id="file" name="file" required multiple />
+                <input type="file" id="file" name="file" multiple />
             </div>
             <div>
-            <button id="submit">Submit</button>
+                <input type="text" name="title" placeholder="Track Title" required />
+                <input type="text" name="main_artist" placeholder="Main Artist" required />
+                <input type="text" name="featured_artists" placeholder="Featured Artists (comma separated)" />
+                <input type="text" name="album" placeholder="Album" />
+                <input type="number" name="duration_ms" placeholder="Duration (ms)" />
+                <input type="date" name="release_date" placeholder="Release Date" />
+                <input type="text" name="genre" placeholder="Genre" />
+                <select name="explicit" required>
+                    <option value="">Explicit?</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+                <input type="text" name="producer" placeholder="Producer" />
+                <input type="text" name="writer" placeholder="Writer" />
+                <input type="text" name="performer" placeholder="Performer" />
+                <input type="number" name="popularity" placeholder="Popularity (0-100)" />
+                <input type="url" name="lyrics_url" placeholder="Lyrics URL" />
+                <input type="url" name="cover_image_url" placeholder="Cover Image URL" />
+                <input type="text" name="spotify_track_id" placeholder="Spotify Track ID" />
+                <input type="number" name="total_plays" placeholder="Total Plays" />
+                <input type="number" name="skip_rate" placeholder="Skip Rate (%)" step="0.01" />
+                <input type="number" name="like_count" placeholder="Like Count" />
+                <input type="number" name="bpm" placeholder="BPM" />
+                <input type="text" name="key" placeholder="Key" />
+                <input type="text" name="isrc_code" placeholder="ISRC Code" />
+                <input type="text" name="artist_id" placeholder="Artist ID" />
             </div>
-            </form>
+            <div>
+                <button id="submit">Submit</button>
+            </div>
+        </form>
+        </div>
+            
+        <script src="js/admin/dev.js"></script>
+            
     
     
-            <script src="js/admin/dev.js"></script>
-    
-    
-        </body>
+    </body>
 </html>
