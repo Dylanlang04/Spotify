@@ -3,6 +3,8 @@ const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3')
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner')
 
 const jwt_secret = process.env.JWTSECRET
+const clientId = process.env.SPOTIFYCLIENT
+const clientSecret = process.env.SPOTIFYSECRET
 
 const s3Client = new S3Client({
   region: 'auto', 
@@ -38,7 +40,51 @@ async function generateSignedUrl(key) {
   return signedUrl;
 }
 
+
+async function getSpotifyAccessToken() {
+  const creds = Buffer.from(`${clientId}:${clientSecret}`).toString('base64')
+  const res = await fetch("https://accounts.spotify.com/api/token", {
+    method: "POST",
+    headers: {
+      Authorization: "Basic " + creds,
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: "grant_type=client_credentials"
+  })
+
+  const data = await res.json()
+  if (!data.access_token) {
+    throw new Error(`Failed to get access token: ${JSON.stringify(data)}`);
+  }
+  return data.access_token
+}
+
+
+async function searchSpotifyTrack(title, artist, accessToken) {
+  const query = `${encodeURIComponent(title)} artist:${encodeURIComponent(artist)}`
+  const url = `https://api.spotify.com/v1/search?q=${query}&type=track&limit=1`
+
+  const res = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`
+    }
+  })
+  const data = await res.json()
+  const track = data.tracks.items[0]
+
+  if (!track) return null
+
+  return {
+    spotify_track_id: track.id,
+    cover_image_url: track.album.images[0]?.url || null
+  }
+}
+
+
+
 module.exports = {
   authenticateToken,
-  generateSignedUrl
+  generateSignedUrl,
+  getSpotifyAccessToken,
+  searchSpotifyTrack
 }

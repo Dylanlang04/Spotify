@@ -33,15 +33,43 @@ submit.addEventListener("click", async (e) => {
     if (getVal('spotify_track_id')) {
         const responsetrack = await fetch(`http://localhost:3000/api/admin/song/track/${getVal('spotify_track_id')}`)
         const resulttrack = await responsetrack.json()
-        jsonObject['album'] = resulttrack.data.album.name
-        jsonObject['main_artist'] = resulttrack.data.artists[0]
+        let main_artist = {}
+        let album = {}
+        album['album_type'] = resulttrack.data.album.album_type
+        album['id'] = resulttrack.data.album.id
+        album['images'] = resulttrack.data.album.images
+        album['name'] = resulttrack.data.album.name
+        album['release_date'] = resulttrack.data.album.release_date
+        album['total_tracks'] = resulttrack.data.album.total_tracks
+        album['type'] = resulttrack.data.album.type
+        let album_artists = []
+        for (let i = 0; i < resulttrack.data.album.artists.length; i++) {
+            let artist = {}
+            artist['id'] = resulttrack.data.album.artists[i].id
+            artist['name'] = resulttrack.data.album.artists[i].name
+            artist['type'] = resulttrack.data.album.artists[i].type
+            album_artists[i] = artist
+        }
+        album['artists'] = album_artists
+        jsonObject['album'] = album
+    
+        main_artist['id'] = resulttrack.data.artists[0].id
+        main_artist['name'] = resulttrack.data.artists[0].name
+        main_artist['type'] = resulttrack.data.artists[0].type
+        jsonObject['main_artist'] = main_artist
+        
+
         if (resulttrack.data.artists.length > 1) {
             let artists = []
             for (let i = 0; i < resulttrack.data.artists.length - 1; i++) {
-                artists[i] = resulttrack.data.artists[1 + i]    
+                let artist = {}
+                artist['id'] = resulttrack.data.artists[1 + i].id
+                artist['name'] = resulttrack.data.artists[1+i].name
+                artist['type'] = resulttrack.data.artists[1+i].type 
+                artists[i]   
             }
             jsonObject['featured_artists'] = artists
-        }
+        } 
         jsonObject['title'] = resulttrack.data.name
         jsonObject['spotify_track_id'] = resulttrack.data.id
         jsonObject['popularity'] = resulttrack.data.popularity
@@ -50,22 +78,12 @@ submit.addEventListener("click", async (e) => {
         jsonObject['duration_ms'] = resulttrack.data.duration_ms
         jsonObject['disc_num'] = resulttrack.data.disc_number
         jsonObject['release_date'] = resulttrack.data.album.release_date
-        
-        if (resulttrack.data.album.images.length > 0) {
-            let images = []
-            for (let i = 0; i < resulttrack.data.album.images.length; i++) {
-                images[i] = resulttrack.data.album.images[i]
-            }
-            jsonObject['images'] = images
-        } 
-        
-
-        
+        jsonObject['images'] = resulttrack.data.album.images
 
         console.log(resulttrack)
         console.log(jsonObject)
         
-    } else {
+    } else { // this needs to be of the same form above. should auto fill null data or known data. ie search by artist/title. then by spotify id. fill in known info. then add the user inputted info
         jsonObject.title = getVal('title')
         jsonObject.main_artist = getVal('main_artist')
         jsonObject.featured_artists = parseCSV(getVal('featured_artists'))
@@ -110,10 +128,10 @@ submit.addEventListener("click", async (e) => {
     
     
         formData.append('metadata', JSON.stringify(jsonObject))
-        const res = await fetch('http://localhost:3000/api/admin/upload', {
-            method: "POST",
-            body: formData,
-        })
+      //  const res = await fetch('http://localhost:3000/api/admin/upload', {
+      //      method: "POST",
+      //      body: formData,
+      //  })
         const result = await res.json()
         console.log(result)
     }
