@@ -26,8 +26,9 @@ const s3Client = new S3Client({
 router.get('/cover/:title/:artist', async (req, res) => {
     const token = await utils.getSpotifyAccessToken()
     const {title, artist} = req.params
-    const {spotify_track_id, cover_image_url} = await utils.searchSpotifyTrack(title, artist, token)
-    return res.json({spotify_track_id, cover_image_url})
+    const track = await utils.searchSpotifyTrack(title, artist, token)
+    
+    return res.json({track})
 })
 //trackId = '7ouMYWpwJ422jRcDASZB7P'
 

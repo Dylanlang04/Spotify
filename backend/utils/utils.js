@@ -71,12 +71,12 @@ async function searchSpotifyTrack(title, artist, accessToken) {
   })
   const data = await res.json()
   const track = data.tracks.items[0]
+  
 
   if (!track) return null
 
   return {
-    spotify_track_id: track.id,
-    cover_image_url: track.album.images[0]?.url || null
+    track
   }
 }
 

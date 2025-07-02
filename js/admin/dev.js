@@ -30,60 +30,83 @@ submit.addEventListener("click", async (e) => {
         //return
     }
     const jsonObject = {}
+    let track = null
     if (getVal('spotify_track_id')) {
-        const responsetrack = await fetch(`http://localhost:3000/api/admin/song/track/${getVal('spotify_track_id')}`)
-        const resulttrack = await responsetrack.json()
+        const response = await fetch(`http://localhost:3000/api/admin/song/track/${getVal('spotify_track_id')}`)
+        track = await response.json()
+    } else {
+        const response = await fetch(`http://localhost:3000/api/admin/cover/${getVal('title')}/${getVal('main_artist')}`)
+        const result1 = await response.json()
+        track = result1.track.track
+    }
+
+
         let main_artist = {}
         let album = {}
-        album['album_type'] = resulttrack.data.album.album_type
-        album['id'] = resulttrack.data.album.id
-        album['images'] = resulttrack.data.album.images
-        album['name'] = resulttrack.data.album.name
-        album['release_date'] = resulttrack.data.album.release_date
-        album['total_tracks'] = resulttrack.data.album.total_tracks
-        album['type'] = resulttrack.data.album.type
+
+        album['album_type'] = track.album.album_type
+        album['album_id'] = track.album.id
+        album['images'] = track.album.images
+        album['name'] = track.album.name
+        album['release_date'] = track.album.release_date
+        album['total_tracks'] = track.album.total_tracks
+        album['type'] = track.album.type
         let album_artists = []
-        for (let i = 0; i < resulttrack.data.album.artists.length; i++) {
+        for (let i = 0; i < track.album.artists.length; i++) {
             let artist = {}
-            artist['id'] = resulttrack.data.album.artists[i].id
-            artist['name'] = resulttrack.data.album.artists[i].name
-            artist['type'] = resulttrack.data.album.artists[i].type
+            artist['id'] = track.album.artists[i].id
+            artist['name'] = track.album.artists[i].name
+            artist['type'] = track.album.artists[i].type
             album_artists[i] = artist
         }
         album['artists'] = album_artists
         jsonObject['album'] = album
-    
-        main_artist['id'] = resulttrack.data.artists[0].id
-        main_artist['name'] = resulttrack.data.artists[0].name
-        main_artist['type'] = resulttrack.data.artists[0].type
-        jsonObject['main_artist'] = main_artist
-        
 
-        if (resulttrack.data.artists.length > 1) {
+        main_artist['name'] = track.artists[0].name
+        main_artist['artist_id'] = track.artists[0].id
+        main_artist['type'] = track.artists[0].type
+        jsonObject['main_artist'] = main_artist
+
+        if (track.artists.length > 1) {
             let artists = []
-            for (let i = 0; i < resulttrack.data.artists.length - 1; i++) {
+            for (let i = 0; i < track.artists.length - 1; i++) {
                 let artist = {}
-                artist['id'] = resulttrack.data.artists[1 + i].id
-                artist['name'] = resulttrack.data.artists[1+i].name
-                artist['type'] = resulttrack.data.artists[1+i].type 
+                artist['id'] = track.artists[1 + i].id
+                artist['name'] = track.artists[1+i].name
+                artist['type'] = track.artists[1+i].type 
                 artists[i]   
             }
             jsonObject['featured_artists'] = artists
         } 
-        jsonObject['title'] = resulttrack.data.name
-        jsonObject['spotify_track_id'] = resulttrack.data.id
-        jsonObject['popularity'] = resulttrack.data.popularity
-        jsonObject['isrc'] = resulttrack.data.external_ids.isrc
-        jsonObject['explicit'] = resulttrack.data.explicit
-        jsonObject['duration_ms'] = resulttrack.data.duration_ms
-        jsonObject['disc_num'] = resulttrack.data.disc_number
-        jsonObject['release_date'] = resulttrack.data.album.release_date
-        jsonObject['images'] = resulttrack.data.album.images
-
-        console.log(resulttrack)
-        console.log(jsonObject)
+        jsonObject['title'] = track.name
+        jsonObject['track_id'] = track.id
+        jsonObject['popularity'] = track.popularity
+        jsonObject['isrc'] = track.external_ids.isrc
+        jsonObject['explicit'] = track.explicit
+        jsonObject['duration_ms'] = track.duration_ms
+        jsonObject['disc_num'] = track.disc_number
+        jsonObject['release_date'] = track.album.release_date
+        jsonObject['images'] = track.album
+        jsonObject['track_number'] = track.track_number
+        jsonObject['type'] = track.type
         
-    } else { // this needs to be of the same form above. should auto fill null data or known data. ie search by artist/title. then by spotify id. fill in known info. then add the user inputted info
+        console.log(track)
+        console.log(jsonObject)
+        let fields =['genre', 'producer', 'writer', 'performer', 'lyrics_url', 'key']
+        fields.forEach(field => {
+            const val = getVal(field)
+            jsonObject[field] = val
+        })
+
+        let numFields = ['total_plays', 'skip_rate', 'like_count', 'bpm']
+        numFields.forEach(field => {
+            const val = parseNumber(getVal(field))
+            jsonObject[field] = val
+        })
+
+
+        
+        /* 
         jsonObject.title = getVal('title')
         jsonObject.main_artist = getVal('main_artist')
         jsonObject.featured_artists = parseCSV(getVal('featured_artists'))
@@ -122,9 +145,11 @@ submit.addEventListener("click", async (e) => {
         })
         const response = await fetch(`http://localhost:3000/api/admin/cover/${jsonObject.title}/${jsonObject.main_artist}`)
         const result1 = await response.json()
+        const track = result1.track.track
+
         jsonObject['spotify_track_id'] = result1.spotify_track_id
         jsonObject['cover_image_url'] = result1.cover_image_url
-        console.log(result1.spotify_track_id)
+        
     
     
         formData.append('metadata', JSON.stringify(jsonObject))
@@ -132,12 +157,7 @@ submit.addEventListener("click", async (e) => {
       //      method: "POST",
       //      body: formData,
       //  })
-        const result = await res.json()
-        console.log(result)
-    }
-
-    
-    
+        */
 })
 
 document.getElementById("back").addEventListener("click", ()=>{
