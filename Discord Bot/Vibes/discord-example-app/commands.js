@@ -47,9 +47,24 @@ const UPLOAD_COMMAND = {
   integration_types: [0, 1],
   contexts: [0, 1, 2]
 }
+const UPLOAD_PLAYLIST_COMMAND = {
+  name: 'upload_playlist',
+  description: 'Upload a playlist from spotify',
+  type: 1,
+  integration_types: [0, 1],
+  contexts: [0,1,2],
+  options: [
+    {
+      name: 'playlist', 
+      type: 3,
+      description: 'spotify playlist URL, (MUST BE PUBLIC PLAYLIST)',
+      required: true
+    }
+  ]
+}
 
 
-const ALL_COMMANDS = [TEST_COMMAND, GET_COMMAND, UPLOAD_COMMAND];
+const ALL_COMMANDS = [TEST_COMMAND, GET_COMMAND, UPLOAD_COMMAND, UPLOAD_PLAYLIST_COMMAND];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);
 //InstallGuildCommands(process.env.APP_ID, process.env.GUILD_ID, ALL_COMMANDS)

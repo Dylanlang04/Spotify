@@ -8,7 +8,8 @@ import {
   MessageComponentTypes,
   verifyKeyMiddleware,
 } from 'discord-interactions';
-import { getRandomEmoji, DiscordRequest } from './utils.js';
+import * as ut from './utils.js';
+import * as utils from '../../../backend/utils/utils.js'
 
 
 const app = express();
@@ -65,7 +66,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
       });
     }
     if(name === 'gett') {
-      const response = await DiscordRequest('channels/1389968930650456164/messages', { method: 'GET' })
+      const response = await ut.DiscordRequest('channels/1389968930650456164/messages', { method: 'GET' })
       const messages = await response.json()
       console.log(messages)
       return res.send({
@@ -173,7 +174,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
 
 
 
-          await DiscordRequest(`/webhooks/${process.env.APP_ID}/${req.body.token}`, {
+          await ut.DiscordRequest(`/webhooks/${process.env.APP_ID}/${req.body.token}`, {
             method: 'POST',
             body: {
               content: `✅ Upload complete!\n**Title:** ${jsonObject.title}\n**Artist:** ${jsonObject.main_artist.name} \n\n **Is this the correct song?**`,
@@ -202,7 +203,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
         } catch(e) {
           console.error("❌ Error during upload:", e);
 
-          await DiscordRequest(`/webhooks/${process.env.APP_ID}/${req.body.token}`, {
+          await ut.DiscordRequest(`/webhooks/${process.env.APP_ID}/${req.body.token}`, {
             method: 'POST',
             body: {
               content: `❌ Upload failed. Please try again later.`,
@@ -212,6 +213,59 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
       })
 
     }
+    if (name === 'upload_playlist') {
+      const url = req.body.data.options[0].value
+      const id = utils.extractSpotifyId(url)
+      
+      const spotifyAccessToken = await utils.getSpotifyAccessToken()
+      const response = await fetch(`https://api.spotify.com/v1/playlists/${id}/tracks?limit=50&offset=0`, {
+        headers: {
+          Authorization: `Bearer ${spotifyAccessToken}`
+        }
+      })
+      const data = await response.json()
+      console.log(data)
+      
+      
+      
+      await res.send({
+        type: InteractionResponseType.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE
+      })
+
+      for (const item of data.items) {
+        const track = item.track
+        const title = track.name.replaceAll('|', '')
+        const artist = track.artists[0].name.replaceAll('|', '')
+        await ut.DiscordRequest(`/channels/1389968930650456164/messages`, {
+           method: 'POST',
+            body: {
+              content: `🎵 ${title} — ${artist}`,
+              components: [
+                {
+                  type: 1,
+                  components: [
+                    {
+                      type: 2,
+                      label: 'Add',
+                      style: 3,
+                      custom_id: `add|${track.id}|${title}|${artist}`,
+                    },
+                    {
+                      type: 2,
+                      label: 'Skip',
+                      style: 4,
+                      custom_id: `skip|${track.id}|${title}|${artist}`,
+                    }
+                  ]
+                }
+              ]
+            }
+        })
+        await ut.delay(1000)
+      }
+
+    }
+
   }
   if(type === InteractionType.MESSAGE_COMPONENT) {
     const {custom_id} = data
@@ -220,7 +274,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
     if(custom_id === 'confirm_upload') {
       const uploadData = pendingUploads.get(userId)
       if(!uploadData) {
-          return await DiscordRequest(`/webhooks/${process.env.APP_ID}/${req.body.token}`, {
+          return await ut.DiscordRequest(`/webhooks/${process.env.APP_ID}/${req.body.token}`, {
             method: 'POST',
             body: {
               content: `❌ Upload data expired or not found.`,
@@ -262,6 +316,16 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
       }
       
 
+    }
+    if(custom_id === 'cancel_upload') {
+      pendingUploads.delete(userId)
+      return res.send({
+        type: InteractionResponseType.UPDATE_MESSAGE,
+        data: {
+          content: '❌ Upload Cancelled',
+          components: []
+        }
+      })
     }
   }
 })
