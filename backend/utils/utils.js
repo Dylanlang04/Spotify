@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3')
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner')
+require('dotenv').config()
 
 const jwt_secret = process.env.JWTSECRET
 const clientId = process.env.SPOTIFYCLIENT
@@ -102,7 +103,10 @@ async function searchExactSpotifyTrack(title, artist, accessToken) {
     track: exactMatch || tracks[0] 
   }
 }
-
+function extractSpotifyId(url) {
+  const match = url.match(/spotify\.com\/(?:playlist|album|track)\/([a-zA-Z0-9]+)/)
+  return match ? match[1] : null
+}
 
 
 module.exports = {
@@ -110,5 +114,6 @@ module.exports = {
   generateSignedUrl,
   getSpotifyAccessToken,
   searchSpotifyTrack,
-  searchExactSpotifyTrack
+  searchExactSpotifyTrack,
+  extractSpotifyId
 }
