@@ -80,11 +80,35 @@ async function searchSpotifyTrack(title, artist, accessToken) {
   }
 }
 
+async function searchExactSpotifyTrack(title, artist, accessToken) {
+  const query = `track:${title} artist:${artist}`
+  const url = `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=track&limit=10`
+
+  const res = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`
+    }
+  })
+
+  const data = await res.json()
+  const tracks = data.tracks.items
+
+  if (!tracks || tracks.length === 0) return null
+  const exactMatch = tracks.find(track =>
+    track.name.toLowerCase() === title.toLowerCase()
+  )
+
+  return {
+    track: exactMatch || tracks[0] 
+  }
+}
+
 
 
 module.exports = {
   authenticateToken,
   generateSignedUrl,
   getSpotifyAccessToken,
-  searchSpotifyTrack
+  searchSpotifyTrack,
+  searchExactSpotifyTrack
 }

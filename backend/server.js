@@ -13,7 +13,7 @@ const userRoutes = require('./routes/userRoutes')
 const accountRoutes = require('./routes/accountRoutes')
 const songRoutes = require('./routes/songRoutes')
 const adminRoutes = require('./routes/adminRoutes')
-
+const discordRoutes = require('./routes/discordRoutes')
 
 const app = express()
 app.use(cors())
@@ -26,6 +26,7 @@ app.use('/api/account', accountRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/song', songRoutes)
 app.use('/api/admin', adminRoutes)
+app.use('/api/discord', discordRoutes)
 
 
 
