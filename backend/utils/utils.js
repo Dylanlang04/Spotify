@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3')
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner')
+const { Client } = require('pg')
 require('dotenv').config()
 
 const jwt_secret = process.env.JWTSECRET
@@ -108,12 +109,23 @@ function extractSpotifyId(url) {
   return match ? match[1] : null
 }
 
+function uploadMetadata(metadata) {
+  const client = new Client({
+    user: process.env.PGUSER,
+    password: process.env.PGPASSWORD,
+    database: process.env.PGDATABASE,
+  })
+  console.log(metadata)
+
+}
+
 
 module.exports = {
   authenticateToken,
   generateSignedUrl,
   getSpotifyAccessToken,
   searchSpotifyTrack,
+  uploadMetadata,
   searchExactSpotifyTrack,
   extractSpotifyId
 }
