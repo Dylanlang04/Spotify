@@ -68,22 +68,49 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
         },
       });
     }
-    if(name === 'gett') {
-      const response = await ut.DiscordRequest('channels/1389968930650456164/messages', { method: 'GET' })
-      const messages = await response.json()
-      console.log(messages)
-      return res.send({
-        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: {
-          flags: InteractionResponseFlags.IS_COMPONENTS_V2,
-          components: [
-            {
-              type: MessageComponentTypes.TEXT_DISPLAY,
-              content: `GET MESSAGE 0 -> ${messages[1].content}`
-            }
-          ]
-        },
-      });
+    if(name === 'get') {
+      const title = req.body.data.options[0].value
+      const artist = req.body.data.options[1].value
+
+      await res.send({
+        type: InteractionResponseType.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE
+      })
+      const r2url = `${process.env.R2URL}/${title} - ${artist}.mp3`
+      try {
+        const result = await fetch(r2url)
+
+        if(!result.ok) {
+          throw new Error("Failed to get song")
+        }
+        const arrayBuffer = await result.arrayBuffer()
+        const buffer = Buffer.from(arrayBuffer)
+        const blob = new Blob([buffer], { type: 'audio/mpeg' })
+        const form = new FormData()
+        form.append('content', `✅ Found ${title} - ${artist}`)
+        form.append('files[0]', blob, `${title} - ${artist}.mp3`)
+
+
+        await fetch(`https://discord.com/api/v10/webhooks/${process.env.APP_ID}/${req.body.token}/messages/@original`, {
+          method: 'PATCH',
+          headers: form.headers,
+          body: form
+        })
+      } catch (e) {
+        console.error("failed to send MP3: ", e)
+
+        await ut.DiscordRequest(`/webhooks/${process.env.APP_ID}/${req.body.token}/messages/@original`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            content: '❌ Could send the MP3 file. (SEE CONSOLE)'
+          })
+        })
+      }
+      
+      
+      
+      
+      
     }
     if(name === 'upload') {
       const opt1 = req.body.data.options[0]
@@ -209,6 +236,13 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
         })
         await ut.delay(1000)
       }
+      await ut.DiscordRequest(`/webhooks/${process.env.APP_ID}/${req.body.token}/messages/@original`, {
+        method: 'PATCH',
+        body: {
+          content: '✅ Playlist processed and messages sent!',
+          components: []
+        }
+      })
 
     }
 

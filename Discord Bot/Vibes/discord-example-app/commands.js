@@ -14,8 +14,22 @@ const TEST_COMMAND = {
 };
 
 const GET_COMMAND = {
-  name: 'gett',
+  name: 'get',
   description: 'Basic command',
+  options: [
+    {
+      name: 'title',
+      description: 'Title of the song (Exact)',
+      type: 3,
+      required: true
+    },
+    {
+      name: 'artist',
+      description: 'Artist (exact)',
+      type: 3,
+      required: true
+    }
+  ],
   type: 1,
   integration_types: [0, 1],
   contexts: [0, 1, 2],
